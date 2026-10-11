@@ -1,0 +1,29 @@
+sequenceDiagram
+    actor Learner
+    participant UI as CyberAwareUI
+    participant App as CyberAwareApp
+    participant DB as PlayerDatabase
+    participant SQLite as Local SQLite
+
+    Learner->>UI: Enter player name and start
+    UI->>App: startSession(name)
+    App->>DB: openPlayer(name, language)
+    DB->>SQLite: Find normalized name key
+    alt Player exists
+        SQLite-->>DB: Existing player record
+        DB->>SQLite: Update display name, language, last_played
+    else New player
+        DB->>SQLite: Insert player record
+        SQLite-->>DB: New player identifier
+    end
+    DB-->>App: PlayerProfile
+    App-->>UI: Session ready
+    UI-->>Learner: Show learning interface
+
+    Learner->>UI: Complete activity
+    UI->>App: addPoints(points)
+    App->>DB: addPoints(playerId, points)
+    DB->>SQLite: Read and update total_points
+    SQLite-->>DB: Updated score
+    DB-->>App: Updated total
+    App-->>UI: Refresh score

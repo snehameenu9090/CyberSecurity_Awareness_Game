@@ -1,0 +1,37 @@
+classDiagram
+    class CyberAwareUI
+    class AwarenessModule
+    class GamesModule
+    class QuizModule
+    class CyberAwareApp
+    class PlayerDatabase
+    class PlayerProfile
+    class StudyLanguage
+    class AwarenessContent
+    class AwarenessTopic
+    class QuizQuestionBank
+    class QuizCategory
+    class QuizQuestion
+    class MiniGamePanel
+    class ArcadeGamePanel
+    class PhishingSortGame
+    class MalwareCleanupGame
+    class PassphraseBuilderGame
+
+    CyberAwareUI --> CyberAwareApp : coordinates
+    CyberAwareUI --> AwarenessModule : presents
+    CyberAwareUI --> GamesModule : presents
+    CyberAwareUI --> QuizModule : presents
+    CyberAwareApp --> PlayerDatabase : persists player state
+    PlayerDatabase ..> PlayerProfile : returns
+    PlayerProfile --> StudyLanguage : stores
+    AwarenessModule ..> AwarenessContent : reads
+    AwarenessContent ..> AwarenessTopic : supplies
+    QuizModule ..> QuizQuestionBank : reads
+    QuizQuestionBank ..> QuizCategory : groups questions
+    QuizQuestionBank ..> QuizQuestion : supplies
+    GamesModule --> MiniGamePanel : routes to games
+    MiniGamePanel <|-- ArcadeGamePanel
+    MiniGamePanel <|-- PhishingSortGame
+    MiniGamePanel <|-- MalwareCleanupGame
+    MiniGamePanel <|-- PassphraseBuilderGame
