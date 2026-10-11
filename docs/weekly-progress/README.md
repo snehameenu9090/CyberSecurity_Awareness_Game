@@ -4,7 +4,7 @@ The reports below are independent weekly records, each with its own seven-day se
 
 | Week | Suggested focus (unverified) | Status | Report |
 |---|---|---|---|
-| 01 | Scope and baseline review | Draft — Needs Confirmation | [Week 01](../../weekly-progress/week-01/README.md) |
+| 01 | Scope and baseline review | Source-based baseline; historical daily record unverified | [Week 01](./week-01/README.md) |
 | 02 | Application structure | Draft — Needs Confirmation | [Week 02](../../weekly-progress/week-02/README.md) |
 | 03 | Awareness lessons | Draft — Needs Confirmation | [Week 03](../../weekly-progress/week-03/README.md) |
 | 04 | Quiz content and flow | Draft — Needs Confirmation | [Week 04](../../weekly-progress/week-04/README.md) |

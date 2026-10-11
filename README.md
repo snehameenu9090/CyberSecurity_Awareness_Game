@@ -106,7 +106,7 @@ The focus and deliverables below are **suggested planning categories, not verifi
 
 | Week | Main Focus | Deliverables | Status | Open Report |
 |---|---|---|---|---|
-| 01 | Scope and baseline review | Confirmed requirements and starting inventory (to verify) | Draft — Needs Confirmation | [Week 01](./weekly-progress/week-01/README.md) |
+| 01 | Scope and baseline review | Source-based requirements and flow; daily history unverified | In progress — execution evidence captured, screenshot unavailable | [Week 01](./docs/weekly-progress/week-01/README.md) |
 | 02 | Application structure | Architecture and module notes (to verify) | Draft — Needs Confirmation | [Week 02](./weekly-progress/week-02/README.md) |
 | 03 | Awareness lessons | Lesson content and presentation (to verify) | Draft — Needs Confirmation | [Week 03](./weekly-progress/week-03/README.md) |
 | 04 | Quiz content and flow | Quiz categories, questions, and feedback (to verify) | Draft — Needs Confirmation | [Week 04](./weekly-progress/week-04/README.md) |
