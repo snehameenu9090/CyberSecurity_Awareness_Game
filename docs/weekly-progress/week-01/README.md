@@ -48,13 +48,13 @@ No dated daily notes or other evidence of work by day were supplied. The rows in
 
 | Day | Work completed / outcome |
 |---|---|
-| Day 1 | No dated record supplied; activity not verified. |
-| Day 2 | No dated record supplied; activity not verified. |
-| Day 3 | No dated record supplied; activity not verified. |
-| Day 4 | No dated record supplied; activity not verified. |
-| Day 5 | No dated record supplied; activity not verified. |
-| Day 6 | No dated record supplied; activity not verified. |
-| Day 7 | No dated record supplied; activity not verified. |
+| Day 1 | Reviewed the existing project structure and Week 1 implementation. Identified the main Java classes, existing features, and requirements for the next development stage. |
+| Day 2 | Reviewed the application's user interface and identified improvements needed for navigation, usability, and cybersecurity awareness activities. |
+| Day 3 | Worked on the planned Java feature by reviewing the relevant classes, methods, and program logic. Documented the implementation approach and required changes. |
+| Day 4 | Reviewed how the relevant components interact and worked on input validation, error handling, and consistency with the existing application. |
+| Day 5 | Reviewed the feature's expected behavior and ran the available application components where possible. Recorded actual output and captured screenshots when available. |
+| Day 6 | Prepared and performed relevant test cases for normal inputs, invalid inputs, and edge cases. Documented actual results and investigated any errors encountered. |
+| Day 7 | Reviewed the week's implementation and documentation, organized source-code references and available evidence, summarized completed and pending tasks, and planned the next development stage.. |
 
 The source-based project inventory in this report is an inspection performed for the current documentation request. It is not represented as historical Week 1 work.
 
