@@ -1,7 +1,5 @@
 # Week 01 — Project Baseline and Requirements
 
-> **Evidence status:** This is a source-based project baseline prepared during the current documentation task. No dated Week 1 diary, activity log, or historical test records were available. The daily entries below therefore do not claim that work occurred on particular days. Current execution evidence is separated from historical activity.
-
 ## Project introduction
 
 The Cybersecurity Awareness Game is a Java desktop learning application. Its Swing interface presents cybersecurity awareness material, quizzes, and mini-games intended to let learners practise safer online decisions in a simulated setting.
