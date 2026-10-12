@@ -1,105 +1,236 @@
-# Week 01 — Project Baseline and Requirements
+# Cybersecurity Awareness Game
 
-## Project Introduction
+A Java Swing desktop application that teaches practical online-safety habits through short lessons, quizzes, and simulated mini-games.
 
-The Cybersecurity Awareness Game is a Java desktop learning application. Its Swing interface presents cybersecurity awareness material, quizzes, and mini-games intended to let learners practise safer online decisions in a simulated setting.
+## Problem statement
 
-## Problem Statement
+Learners encounter phishing, weak or reused passwords, unsafe networks, malware, and account-recovery risks. This project presents selected safety guidance and simulated practice in an approachable desktop experience. It does not scan or protect a real device, inspect real email, or replace professional security advice.
 
-Everyday users encounter phishing and scams, weak or reused passwords, unsafe device practices, and other online risks. The project addresses the need for approachable, interactive cybersecurity awareness practice. The application contains educational content and pretend scenarios; it is not a security scanner and does not protect or inspect a user's real device.
+## Objectives and scope
 
-## Objectives and Scope
+- Present cybersecurity advice with examples and checklists.
+- Let learners practise choices in topic quizzes and four educational games.
+- Provide feedback and an aggregate player score.
+- Offer English, Hindi, Tamil, and Telugu as selectable study languages.
+- Store a named player profile and total points locally when SQLite is available.
 
-### Objectives Supported by the Implementation
+The inspected application has no network account, cloud synchronization, real malware scanner, or persisted lesson/quiz/game history.
 
-- Present short safety guidance, examples, and checklists.
-- Offer quizzes and interactive practice with feedback.
-- Provide selectable English, Hindi, Tamil, and Telugu UI/content paths.
-- Support named local player sessions and scores through SQLite when available.
+## Main features
 
-### Scope
+- Six awareness topics: phishing/scams, passwords, multi-factor authentication, updates/devices, public Wi-Fi, and backups/recovery.
+- Five quiz topics: password safety, phishing, public Wi-Fi, malware, and AI safety.
+- Four simulations: Cyber Shield Defender, Phishing Inbox, Malware Cleanup Crew, and Passphrase Builder.
+- Named player sessions and aggregate points in SQLite, with an in-memory current-session fallback if SQLite initialization fails.
 
-The inspected application is a local Java Swing desktop program. The source contains six awareness topics, five quiz categories, and four mini-games. Player data is written to a local SQLite database at `data/cyberaware.db` when the database initializes. The backend also contains a session-only in-memory fallback.
+The features are present in source. Except for the launcher and initial welcome-screen evidence summarized below, feature interactions have not been fully verified.
 
-Network accounts, cloud synchronization, real malware scanning, and network-based security monitoring are not in the inspected implementation scope.
+## Technology stack
 
-## Technology Stack
-
-| Area | Evidence in project |
+| Area | Technology |
 |---|---|
-| Language/runtime target | Java; Maven and `run.bat`/`run.ps1` target Java 17 |
-| Desktop UI | Java Swing (`CyberAwareUI` extends `JFrame`) |
-| Persistence | SQLite through `sqlite-jdbc` 3.46.1.0 |
+| Language/runtime | Java 17 target |
+| Desktop UI | Java Swing |
+| Build | Maven or included Windows launch scripts |
+| Local persistence | SQLite via Xerial SQLite JDBC 3.46.1.0 |
 | Logging API | SLF4J API 1.7.36 |
-| Build/launch | Maven configuration in [`pom.xml`](../../../pom.xml); Windows launchers [`run.bat`](../../../run.bat) and [`run.ps1`](../../../run.ps1) |
-| Application entry point | [`CyberAwareApp.java`](../../../src/main/java/com/cyberaware/backend/CyberAwareApp.java) |
+| Editable diagrams | Mermaid |
 
-## Planned Cybersecurity Awareness Modules
+## Architecture
 
-These are module areas present in source, not claims about when they were developed:
+The frontend package contains the Swing window and awareness, quiz, and game modules. The backend contains session coordination, educational data/models, and SQLite player persistence. See the [system architecture](./docs/design/system-architecture.md), [diagram gallery](./docs/design/diagrams.md), and [Week 3 design report](./docs/weekly-progress/week-03/README.md).
 
-- **Lessons:** phishing and scams; password safety; multi-factor authentication; updates and devices; public Wi-Fi; backups and recovery. See [`AwarenessContent.java`](../../../src/main/java/com/cyberaware/backend/AwarenessContent.java).
-- **Quiz categories:** password, phishing, public Wi-Fi, malware, and AI safety. See [`QuizCategory.java`](../../../src/main/java/com/cyberaware/backend/QuizCategory.java).
-- **Mini-games:** Cyber Shield Defender, Phishing Inbox, Malware Cleanup Crew, and Passphrase Builder. See [`GamesModule.java`](../../../src/main/java/com/cyberaware/frontend/GamesModule.java).
+```text
+src/main/java/com/cyberaware/
+├── frontend/  Swing UI, lessons, quiz, games, and theme
+└── backend/   application/session, content, models, and SQLite persistence
+```
 
-## Week 1 daily progress
+The SQLite store contains one `players` table with a display name, normalized unique name key, total points, language, and last-played timestamp. Java initializes the table; [`database/schema.sql`](./database/schema.sql) is a reference schema. See [database design](./docs/design/database-design.md) and the [ER diagram](./docs/design/ER-Diagram.mmd).
 
-No dated daily notes or other evidence of work by day were supplied. The rows intentionally record this evidence gap rather than reconstructing a week:
+## Requirements
 
-| Day | Work completed / outcome |
-|---|---|
-| Day 1 | Reviewed the existing project structure and Week 1 implementation. Identified the main Java classes, existing features, and requirements for the next development stage. |
-| Day 2 | Reviewed the application's user interface and identified improvements needed for navigation, usability, and cybersecurity awareness activities. |
-| Day 3 | Worked on the planned Java feature by reviewing the relevant classes, methods, and program logic. Documented the implementation approach and required changes. |
-| Day 4 | Reviewed how the relevant components interact and worked on input validation, error handling, and consistency with the existing application. |
-| Day 5 | Reviewed the feature's expected behavior and ran the available application components where possible. Recorded actual output and captured screenshots when available. |
-| Day 6 | Prepared and performed relevant test cases for normal inputs, invalid inputs, and edge cases. Documented actual results and investigated any errors encountered. |
-| Day 7 | Reviewed the week's implementation and documentation, organized source-code references and available evidence, summarized completed and pending tasks, and planned the next development stage.. |
+- JDK 17 or newer.
+- A graphical desktop environment for the Swing application.
+- For Maven commands: Maven installed.
+- For first use of the Windows launchers: network access if the ignored SQLite JDBC and SLF4J JARs are not already present in `target/lib/`.
 
-The source-based project inventory in this report is an inspection performed for the current documentation request. It is not represented as historical Week 1 work.
+## Installation and execution
 
-## Problems and Solutions
+### Windows launcher
 
-### Historical Week 1 record
+From the repository root, run `run.bat` or `run.ps1`. The scripts compile the application with `javac --release 17` and start `com.cyberaware.backend.CyberAwareApp`. They download the two runtime JARs to ignored `target/lib/` if needed.
 
-No dated issue log or contemporaneous record was available. Historical problems and their solutions are **not verified** and are not invented here.
+### Maven build
 
-### Current Documentation Verification Session
+```powershell
+mvn package
+```
 
-| Observed Issue | Evidence-Based Handling | Result |
+Maven resolves declared dependencies and packages a JAR. The JAR does not bundle runtime dependencies; run it with those dependencies on the classpath or use the Windows launchers.
+
+Detailed steps and troubleshooting are in the [installation guide](./user-manual/installation-guide.md). Learner controls and safety notes are in the [user guide](./user-manual/user-guide.md).
+
+## Application screenshot
+
+The following genuine image was captured from the running Swing application using a clean temporary profile. It demonstrates the initial welcome screen only; it does not verify player submission, navigation, lessons, quizzes, gameplay, or persistence.
+
+![Cybersecurity Awareness Game welcome screen](./docs/weekly-progress/week-02/screenshots/welcome-screen.png)
+
+See the [capture notes](./docs/weekly-progress/week-02/test-evidence/launcher-run.md) for method and limits.
+
+## Testing summary
+
+Existing launcher evidence records a Java 17-target compile/start run that returned exit code 0. A separate run produced the visible welcome-screen capture. Both records include SLF4J no-binding and SQLite native-access warnings. These results are limited to launcher/initial rendering; lesson, quiz, game, navigation, and database behavior remain unverified. No automated test suite was identified.
+
+A fresh isolated compile during this documentation review also passed with `javac 25.0.4.1 --release 17`. A copied launcher reached its startup message and the Java process remained alive, but no visible window was detected in that re-check; it is not counted as a new UI pass. See the [test report](./testing/test-report.md).
+
+- [Test report](./testing/test-report.md)
+- [Manual test cases](./testing/test-cases.md)
+- [Testing strategy](./testing/testing-strategy.md)
+- [Week 1 launcher evidence](./docs/weekly-progress/week-01/test-evidence/launcher-result.md)
+- [Week 2 launcher and screenshot evidence](./docs/weekly-progress/week-02/test-evidence/launcher-run.md)
+
+## Limitations and future improvements
+
+- Educational simulations do not replace professional advice or perform real security actions.
+- Local SQLite data is not synchronized; the schema stores aggregate player points but not activity history.
+- Windows launch scripts are provided; their portability to other platforms is not established.
+- Accessibility, performance, and translation completeness have not been formally evaluated.
+- Useful future work includes automated tests, accessibility review, additional confirmed screenshots, and optional export/backup for local scores.
+
+## Documentation
+
+- [Documentation index](./docs/README.md)
+- [Software Requirements Specification](./docs/srs/SRS.md)
+- [System architecture](./docs/design/system-architecture.md)
+- [Design diagrams](./docs/design/diagrams.md)
+- [Database design](./docs/design/database-design.md)
+- [Installation guide](./user-manual/installation-guide.md)
+- [User guide](./user-manual/user-guide.md)
+- [Testing documentation](./testing/testing-strategy.md)
+- [12-week progress index](./docs/weekly-progress/README.md)
+
+## 12-week progress
+
+Each report separates present source evidence from historical attribution. Because no dated daily development log was found, day allocations are labeled as estimated reconstructions for review; current source presence does not establish the week in which a feature was implemented.
+
+| Week | Focus | Report |
 |---|---|---|
-| PowerShell refused to load `run.ps1` because script execution is disabled on this system. | Used the repository's existing `run.bat` launcher instead; no policy setting was changed. | The batch launcher compiled and proceeded to application startup. |
-| The running application window could not be found by the screenshot capture, which reported `The running application window was not found.` | Did not create or substitute a mock screenshot. | UI rendering and interaction remain unverified; see [test evidence](./test-evidence/launcher-result.md). |
+| 01 | Project scope and baseline | [Week 01](./docs/weekly-progress/week-01/README.md) |
+| 02 | Application structure and evidence | [Week 02](./docs/weekly-progress/week-02/README.md) |
+| 03 | Requirements and system design | [Week 03](./docs/weekly-progress/week-03/README.md) |
+| 04 | Awareness lessons | [Week 04](./docs/weekly-progress/week-04/README.md) |
+| 05 | Phishing-awareness exercise | [Week 05](./docs/weekly-progress/week-05/README.md) |
+| 06 | Quiz functionality and validation | [Week 06](./docs/weekly-progress/week-06/README.md) |
+| 07 | Scoring and feedback | [Week 07](./docs/weekly-progress/week-07/README.md) |
+| 08 | Local database and persistence | [Week 08](./docs/weekly-progress/week-08/README.md) |
+| 09 | Player sessions and language | [Week 09](./docs/weekly-progress/week-09/README.md) |
+| 10 | Testing and verification | [Week 10](./docs/weekly-progress/week-10/README.md) |
+| 11 | Integration and documentation | [Week 11](./docs/weekly-progress/week-11/README.md) |
+| 12 | Final verification and project summary | [Week 12](./docs/weekly-progress/week-12/README.md) |
 
-These are current verification-session observations, not claims about problems encountered during the historical Week 1.
+## Week 1: Project Introduction, Objectives & Initial Setup
 
-## Testing and Actual Outcome
+> **Evidence note:** This is a retrospective, source-based baseline. The available Git history contains documentation commits dated 2026-10-11, but no dated daily development log establishing when individual application features were created. Current source presence is not proof that a feature was completed during Week 1. The day-wise entries below are a **Proposed Development Plan**, not a historical activity record.
 
-The existing [`run.bat`](../../../run.bat) launcher was executed. Its output reached `Starting CYBERSECURITY AWARENESS GAME...` and the launcher process returned exit code 0. Since the script prints that message only after `javac` succeeds, the configured Java compilation completed without a reported compiler error. Runtime output contained an SLF4J no-binding warning and a restricted native-access warning from SQLite JDBC.
+### 1. Project Administration
 
-The application window was not available to the capture attempt. Therefore, a successful visible UI launch, navigation, gameplay, database writes, and learner interactions are **not confirmed** by this run. No automated test suite was run. The exact captured launcher output and limits are in [`test-evidence/`](./test-evidence/launcher-result.md).
+| Item | Verified information |
+|---|---|
+| Project | Cybersecurity Awareness Game |
+| Repository | [snehameenu9090/CyberSecurity_Awareness_Game](https://github.com/snehameenu9090/CyberSecurity_Awareness_Game) |
+| Application type | Java desktop learning application |
+| Week 1 dates | Not yet verified; no dated Week 1 activity log was found |
+| Development branch in this checkout | `main` |
+| Project goal | Practise practical online-safety decisions through lessons, quizzes, and simulated games |
 
-## Screenshots and Evidence
+### 2. Abstract
 
-- [Screenshots folder](./screenshots/) — no screenshot was captured because the running application window was not found. No image has been fabricated.
-- [Launcher output](./test-evidence/launcher-output.txt)
-- [Execution result and test limits](./test-evidence/launcher-result.md)
-- [Application entry point](../../../src/main/java/com/cyberaware/backend/CyberAwareApp.java)
-- [Existing architecture and UML/ER diagrams](../../design/diagrams.md)
+The Cybersecurity Awareness Game is a desktop application intended to introduce learners to everyday cybersecurity risks through educational content and simulated activities. The repository source includes awareness lessons, quizzes, games, named player sessions, and local score persistence. These are source-supported capabilities; the available test evidence does not establish that every lesson, quiz, game, or persistence flow has been exercised successfully.
 
-## Initial System Flow and Design
+### 3. Problem Statement
 
-The initial source-based flow is documented in [system-flow.md](./system-flow.md). The broader component architecture and UML/ER diagrams already exist in the [design documentation](../../design/diagrams.md); they are linked rather than duplicated here.
+People encounter phishing and scams, weak or reused passwords, unsafe network choices, malware lures, and account-security risks. The project provides a low-risk learning environment for understanding safer responses to such situations. Its games are simulations: the application is not a real malware scanner, does not inspect real email, and does not replace professional security advice.
 
-## Next week's plan
+### 4. Project Objectives
 
-**Proposed plan, not a historical commitment:** review the existing package/module boundaries, map the UI to backend and persistence responsibilities, and run focused checks for the player/session and content flows. Record dates, completed work, problems, and observed results only when supported by contemporaneous evidence.
+- Present practical cybersecurity guidance with examples and recommended actions.
+- Give learners simulated opportunities to recognize suspicious situations and practise safer choices.
+- Provide quizzes and game feedback to reinforce learning.
+- Support selectable study languages and named local player profiles.
+- Keep project claims aligned with source evidence and report unverified behavior transparently.
 
-## Navigation
+### 5. Scope of the Project
 
-- [Documentation index](../../README.md)
-- [Project overview](../../../README.md)
-- [System flow](./system-flow.md)
-- [Requirements](./requirements.md)
-- [Existing project architecture](../../design/system-architecture.md)
-- [Previous Week 1 draft/template](../../../weekly-progress/week-01/README.md)
+**Included in the inspected source:** a Java Swing desktop interface, six awareness topics, five quiz categories, four simulated games, selectable English/Hindi/Tamil/Telugu study languages, and local SQLite player/score storage with a session-only in-memory fallback if SQLite initialization fails.
+
+**Not included or not established by the inspected implementation:** cloud accounts or synchronization, real device scanning or malware removal, real-email inspection, persisted lesson/game history, accessibility certification, or formal performance targets.
+
+### 6. Technology Stack
+
+| Area | Repository evidence | Status |
+|---|---|---|
+| Language | Java sources; Maven compiler source/target and Windows launcher specify Java 17 | Java 17 target verified; exact JDK used for historical development is not established |
+| GUI framework | Java Swing classes and UI components | Verified in source |
+| Database | SQLite through Xerial SQLite JDBC 3.46.1.0; SLF4J API 1.7.36 is also declared | Verified in `pom.xml` and the persistence implementation |
+| Build tools | Maven project configuration and `run.bat` / `run.ps1` launchers are present | Verified; IDE/editor used for development is not yet verified |
+| IDE/editor | VS Code workspace configuration is present in the local project tree | Configuration exists; actual historical IDE use is not established |
+| Testing tools | Manual test documentation and Windows launcher checks are present; no automated test framework or test suite has been identified | Automated testing framework: Not yet verified |
+
+### 7. Game Modules
+
+The following modules are evidenced by the Java source. “Present in source” does not by itself mean that runtime interaction or all acceptance behavior has been tested.
+
+| Module | Objective | Intended learning outcome | Implementation status |
+|---|---|---|---|
+| Cyber Shield Defender | A simulated arcade activity themed around cyber threats and defensive choices | Recognize that backups, phishing awareness, and protective actions matter | Game implementation and menu entry are present in source; gameplay verification is not established by the available test report |
+| Phishing Inbox | Sort simulated email examples into safe and suspicious categories | Notice sender, urgency, and link warning signs before acting | Game implementation and menu entry are present in source; gameplay verification is not established by the available test report |
+| Malware Cleanup Crew | Inspect a pretend device and identify simulated unsafe downloads | Treat unexpected or untrusted downloads cautiously; understand that the exercise is not a real scan | Game implementation and menu entry are present in source; gameplay verification is not established by the available test report |
+| Passphrase Builder | Assemble a sample passphrase in a word-tile exercise | Practise the idea of long, unique passphrases and avoid reusing a game phrase as a real password | Game implementation and menu entry are present in source; gameplay verification is not established by the available test report |
+
+The accompanying awareness and quiz areas are also source-supported: six lessons cover phishing/scams, password safety, multi-factor authentication, updates/devices, public Wi-Fi, and backups/recovery; quiz categories cover passwords, phishing, public Wi-Fi, malware, and AI safety.
+
+### 8. Week 1: Day-Wise Development Log
+
+No historical day-by-day records were available. The entries below are a **proposed seven-day plan only**; none should be read as completed work or assigned a calendar date.
+
+| Day | Proposed development plan | Historical completion |
+|---|---|---|
+| Day 1 | Review the repository structure and identify the application entry point and existing documentation. | Not verified |
+| Day 2 | Define the cybersecurity awareness problem and intended learner audience. | Not verified |
+| Day 3 | Agree on project objectives, boundaries, and non-goals. | Not verified |
+| Day 4 | Confirm the Java target, desktop framework, persistence choice, and available build commands from project files. | Not verified |
+| Day 5 | Inventory lessons, quiz categories, and game modules from the existing source. | Not verified |
+| Day 6 | Draft initial functional scope and a high-level learner/system flow. | Not verified |
+| Day 7 | Run an approved baseline build, record only observed outcomes, and prepare a plan for the next week. | Not verified |
+
+### 9. Challenges & Observations
+
+- **Historical attribution is incomplete:** available Git history records documentation changes, not a dated daily development log. No feature is assigned to a specific day or claimed as Week 1 work.
+- **Source presence is not a test result:** source confirms the listed modules exist, while the available test report says that gameplay and persistence behaviors have not been fully tested.
+- **Testing-tool coverage is limited:** manual test documentation exists, but an automated test framework has not been identified.
+- **Evidence-based handling:** this section labels the day-wise schedule as proposed, separates source evidence from runtime verification, and leaves unsupported dates and outcomes unclaimed.
+
+### 10. Week 1 Deliverables
+
+| Classification | Deliverable | Evidence/status |
+|---|---|---|
+| Completed in the current documentation update | This source-based Week 1 section in the existing root README | Added as documentation now; it is not evidence of historical Week 1 activity |
+| Present in the repository; completion week not verified | Java application source, Maven configuration, and Windows launch scripts | Their presence is verified; they are not attributed to Week 1 |
+| Present in documentation; historical completion week not verified | Project SRS, architecture/design diagrams, test strategy, manual test cases, and test report | See the [documentation index](./docs/README.md); dates of original creation do not establish Week 1 completion |
+| Not available as historical evidence | Dated daily log, Week 1-specific screenshots, and a Week 1 test record | Not verified; no historical claim is made |
+
+### 11. Week 1 Summary
+
+The repository supports describing the application as a Java 17-targeted Swing cybersecurity learning game with SQLite-backed local player data, six awareness topics, five quiz categories, and four simulated games. The available Git history and test documentation do not establish when these features were developed or provide a genuine seven-day Week 1 diary. Accordingly, the daily schedule above is explicitly proposed, and feature implementation is not presented as proof of Week 1 completion.
+
+### 12. Plan for Week 2
+
+Based on the verified project state, the proposed next steps are:
+
+- Map the existing UI, content, game, session, and persistence components to their responsibilities.
+- Review the existing architecture and diagrams against the source, correcting documentation only where evidence supports it.
+- Run a focused, non-destructive build and record the exact environment, output, and exit status.
+- Identify manual checks for the four games, quizzes, language selection, and player persistence; report them as untested until executed.
+- Capture genuine screenshots only from the running application, with method and limitations recorded.
