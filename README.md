@@ -1,4 +1,5 @@
-# Week 01 — Project Baseline and Requirements
+# Cyber Security Awareness Game 
+## Week 01 — Project Baseline and Requirements
 
 ## Project Introduction
 
@@ -20,10 +21,10 @@ The Cybersecurity Awareness Game is a Java desktop learning application. Its Swi
 | Name | Enrollment | Email | Mobile |
 | :--- | :--- | :--- | :--- |
 | Sneha | 24E1ARCSF10P163 | snehameenu656@gmail.com | 8957500973 |
-| Chitransh Sain | ACEIT24IT6363-6363 | chitranshsain157@gmail.com | 8306244403 |
-| Mahadev Prasad Yadav | ACEIT24IT6379-6379 | mahadevyadav7375@gmail.com | 7375088538 |
-| Suman Kumar | ACEIT24IT6409-6409 | sumank76495@gmail.com | 6205867784 |
-| Aaradhy Sharma | ACEIT24IT6349-6349 | aaradhysharma426@gmail.com | 6367143506 |
+| Upasna Yadav | 24E1ARCSF30P177 | upasnayadav1234567@gmail.com | 7983614073 |
+| Siya Gumber | 24E1ARCSF10P162 | mahadevyadav7375@gmail.com | 9988778348 |
+| Swati Jain | 24E1ARCSF10P163 | sumank76495@gmail.com | 8955830863 |
+| Shruti Kumari | 24E1ARCSF10P163 | aaradhysharma426@gmail.com | 9334191503 |
 
 ---
 
