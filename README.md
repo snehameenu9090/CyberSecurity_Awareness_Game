@@ -116,4 +116,245 @@ The initial source-based flow is documented in [system-flow.md](./system-flow.md
 ## Next week's plan
 
 **Proposed plan, not a historical commitment:** review the existing package/module boundaries, map the UI to backend and persistence responsibilities, and run focused checks for the player/session and content flows. Record dates, completed work, problems, and observed results only when supported by contemporaneous evidence.
+Cybersecurity Awareness Game
 
+### A Java-Based Desktop Application for Interactive Cybersecurity Learning
+
+""Language" (https://img.shields.io/badge/Language-Java-orange)" (https://www.java.com/)
+""Project" (https://img.shields.io/badge/Project-Cybersecurity%20Awareness-blue)" (https://github.com/snehameenu9090/CyberSecurity_Awareness_Game)
+""Documentation" (https://img.shields.io/badge/Documentation-Weekly%20Progress-green)" (./weekly-progress/)
+
+### 1. Project Overview
+
+The Cybersecurity Awareness Game is a Java-based desktop application developed to promote cybersecurity awareness and encourage safe digital behaviour. The project focuses on making cybersecurity concepts easier to understand through interactive learning activities and practical security-related scenarios.
+
+The application is intended to help users understand common online threats, recognize suspicious activities, and learn essential practices for protecting their digital information.
+
+This project also follows a structured development and documentation approach, with weekly progress reports maintained throughout the planned 12-week development period.
+
+### 2. Problem Statement
+
+The increasing use of digital platforms has made cybersecurity awareness an important requirement. Users may encounter phishing messages, suspicious links, weak passwords, malware, online scams, and privacy-related risks.
+
+A lack of awareness about these threats can lead to compromised accounts, data loss, and unsafe online behaviour.
+
+The Cybersecurity Awareness Game aims to address this problem by presenting cybersecurity concepts in an accessible and interactive learning environment.
+
+3. Project Objectives
+
+- To promote awareness of common cybersecurity threats.
+- To explain safe password practices and account protection.
+- To improve the ability to identify suspicious links and phishing attempts.
+- To encourage safer internet browsing and responsible digital behaviour.
+- To provide an engaging way to learn cybersecurity fundamentals.
+- To document project requirements, development activities, and testing progress.
+- To maintain organized technical documentation throughout the 12-week project plan.
+
+### 4. Key Learning Areas
+
+The following areas define the intended cybersecurity learning scope. Their implementation status should be confirmed against the actual application.
+
+Learning Area| Description
+Password Security| Understanding password strength and account protection.
+Phishing Awareness| Recognizing suspicious messages, links, and impersonation attempts.
+Malware Awareness| Learning about malicious software and unsafe downloads.
+Safe Internet Usage| Understanding privacy, browsing safety, and online risks.
+Cybersecurity Assessment| Reviewing security concepts through questions or scenarios, where implemented.
+
+Note: The table describes the project's learning scope; it does not claim that every listed module is already implemented.
+
+### 5. Technology Stack
+
+Technology| Purpose
+Java| Primary programming language for the desktop application.
+Java GUI Framework| To be confirmed from the existing source code.
+Database / Data Storage| To be confirmed from the existing implementation.
+Development Environment| To be documented according to the environment used.
+Git and GitHub| Source-code version control and project documentation.
+Markdown| Weekly reports and project documentation.
+
+6. Project Structure
+
+The repository is organized into the following directories and files.
+
+CyberSecurity_Awareness_Game/
+│
+├── assets/
+│   └── Project assets and resources
+│
+├── database/
+│   └── Database-related files and resources
+│
+├── docs/
+│   └── Project documentation
+│
+├── testing/
+│   └── Testing documentation and test evidence
+│
+├── user-manual/
+│   └── User instructions and guidance
+│
+├── weekly-progress/
+│   ├── week-01/
+│   │   ├── screenshots/
+│   │   └── README.md
+│   ├── week-02/
+│   │   ├── screenshots/
+│   │   └── README.md
+│   ├── week-03/
+│   ├── week-04/
+│   ├── week-05/
+│   ├── week-06/
+│   ├── week-07/
+│   ├── week-08/
+│   ├── week-09/
+│   ├── week-10/
+│   ├── week-11/
+│   └── week-12/
+│
+└── README.md
+
+Note: This is a documentation-oriented overview of the visible repository structure. It does not list every file or imply that all directories already contain completed documentation.
+
+7. Weekly Development Progress
+
+Each weekly report provides a dedicated location for documenting project activities, observations, deliverables, challenges, and subsequent tasks.
+
+## Week 1 — Project Introduction and Planning
+
+Focus: Establishing the project overview, objectives, scope, initial planning, and documentation structure.
+
+Documentation: "View Week 1 Progress Report" (./weekly-progress/week-01/README.md)
+
+## Week 2 — Requirements Analysis and System Design
+
+Focus: Documenting the proposed user roles, software requirements, cybersecurity learning areas, architecture considerations, data-storage approach, and non-functional requirements.
+
+Documentation: "View Week 2 Progress Report" (./weekly-progress/week-02/README.md)
+
+## Week 3 — Detailed Requirements and Architecture
+
+Planned focus: Review the existing Java source code, verify application components, and document the actual architecture.
+
+Documentation: "View Week 3 Progress Report" (./weekly-progress/week-03/README.md)
+
+## Week 4 — Interface and Navigation Review
+
+Planned focus: Review the existing user interface and document the application's navigation and user interactions.
+
+Documentation: "View Week 4 Progress Report" (./weekly-progress/week-04/README.md)
+
+## Week 5 — Core Functionality Review
+
+Planned focus: Identify implemented features, review application behaviour, and document functional requirements against the source code.
+
+Documentation: "View Week 5 Progress Report" (./weekly-progress/week-05/README.md)
+
+## Week 6 — Data Management Review
+
+Planned focus: Inspect the existing data-storage approach and document verified database or file-handling functionality.
+
+Documentation: "View Week 6 Progress Report" (./weekly-progress/week-06/README.md)
+
+## Week 7 — Cybersecurity Content Review
+
+Planned focus: Review educational content and check the accuracy and clarity of the cybersecurity learning material.
+
+Documentation: "View Week 7 Progress Report" (./weekly-progress/week-07/README.md)
+
+## Week 8 — Functional Testing
+
+Planned focus: Prepare and execute test cases for the existing application, recording actual results and reproducible defects.
+
+Documentation: "View Week 8 Progress Report" (./weekly-progress/week-08/README.md)
+
+## Week 9 — Bug Tracking and Quality Review
+
+Planned focus: Document verified defects, their reproduction steps, severity, and resolution status.
+
+Documentation: "View Week 9 Progress Report" (./weekly-progress/week-09/README.md)
+
+## Week 10 — Documentation and User Guidance
+
+Planned focus: Review technical documentation and prepare user instructions based on the application's actual functionality.
+
+Documentation: "View Week 10 Progress Report" (./weekly-progress/week-10/README.md)
+
+## Week 11 — Final Validation
+
+Planned focus: Review completed requirements, verify fixes, and summarize outstanding issues and test results.
+
+Documentation: "View Week 11 Progress Report" (./weekly-progress/week-11/README.md)
+
+## Week 12 — Final Review and Project Summary
+
+Planned focus: Consolidate verified project documentation, summarize the development process, and record final validation results.
+
+Documentation: "View Week 12 Progress Report" (./weekly-progress/week-12/README.md)
+
+«Progress status: Week 1 and Week 2 have dedicated documentation locations. Weeks 3–12 above describe a proposed plan and must be updated as the corresponding work is performed and documented.»
+
+### 8. Testing and Quality Assurance
+
+Testing is intended to verify the application's behaviour and help identify defects before the project is finalized.
+
+The testing documentation may include:
+
+- Test case ID and test objective.
+- Preconditions and test steps.
+- Expected and actual results.
+- Execution status: Pass, Fail, or Not Run.
+- Defect description and reproduction steps.
+- Screenshots or other supporting evidence, where available.
+- Retest results and resolution status.
+
+Test results will be reported only after the corresponding tests have actually been executed.
+
+Testing Status: Not yet summarized in this overview. Refer to the "testing directory" (./testing/) for available test documentation.
+
+### 9. Project Documentation
+
+Resource| Link
+Project Assets| "Open assets" (./assets/)
+Database Resources| "Open database" (./database/)
+Technical Documentation| "Open docs" (./docs/)
+Testing Documentation| "Open testing" (./testing/)
+User Manual| "Open user-manual" (./user-manual/)
+Weekly Progress Reports| "Open weekly-progress" (./weekly-progress/)
+
+### 10. Expected Outcomes
+
+The project aims to provide:
+
+- An accessible desktop-based cybersecurity learning experience.
+- Better understanding of common digital threats.
+- Awareness of safer online practices.
+- Organized project and testing documentation.
+- A traceable record of development activities across the planned 12 weeks.
+
+These are intended outcomes, not claims of measured educational improvement or completed testing.
+
+### 11. Future Enhancements
+
+Potential enhancements may include:
+
+- Additional cybersecurity scenarios and learning activities.
+- More questions and assessments, if compatible with the existing design.
+- Progress tracking and score summaries, where appropriate.
+- Improved accessibility and user guidance.
+- Expanded test coverage and clearer defect reporting.
+- Additional educational content covering emerging online threats.
+
+Any future enhancement will depend on project requirements and the existing implementation.
+
+### 12. Conclusion
+
+The Cybersecurity Awareness Game is intended to make cybersecurity fundamentals easier to learn through a Java-based desktop application and structured educational content.
+
+This repository brings together the project overview, supporting resources, testing documentation, user guidance, and weekly development reports. The documentation will be updated as implementation and verification progress.
+
+---
+
+Repository: "CyberSecurity_Awareness_Game" (https://github.com/snehameenu9090/CyberSecurity_Awareness_Game)
+
+Weekly Documentation: "Browse all 12 weeks" (./weekly-progress/)
