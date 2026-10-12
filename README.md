@@ -5,10 +5,13 @@
 The Cybersecurity Awareness Game is a Java desktop learning application. Its Swing interface presents cybersecurity awareness material, quizzes, and mini-games intended to let learners practise safer online decisions in a simulated setting.
 
 ## Project Administration
-
-**Project Guide:** Er. Ram Babu Buri
+**- Project Title:** Cybersecurity Awareness Game
+* **Project Guide:** Er. Ram Babu Buri
 * **Research Area:** Machine Learning & Data Science
 * **Specializations:** Java, JSP–Servlet, Spring Boot, MySQL, Python
+* **Project Category:**  Java Desktop Application
+* **Research Area:** Cybersecurity Awareness and Digital Safety Education
+* **Current Development Phase:** Initial project review, requirement analysis, and documentation
 
 
 
