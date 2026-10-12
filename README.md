@@ -107,13 +107,6 @@ The existing [`run.bat`](../../../run.bat) launcher was executed. Its output rea
 
 The application window was not available to the capture attempt. Therefore, a successful visible UI launch, navigation, gameplay, database writes, and learner interactions are **not confirmed** by this run. No automated test suite was run. The exact captured launcher output and limits are in [`test-evidence/`](./test-evidence/launcher-result.md).
 
-## Screenshots and Evidence
-
-- [Screenshots folder](./screenshots/) — no screenshot was captured because the running application window was not found. No image has been fabricated.
-- [Launcher output](./test-evidence/launcher-output.txt)
-- [Execution result and test limits](./test-evidence/launcher-result.md)
-- [Application entry point](../../../src/main/java/com/cyberaware/backend/CyberAwareApp.java)
-- [Existing architecture and UML/ER diagrams](../../design/diagrams.md)
 
 ## Initial System Flow and Design
 
