@@ -22,11 +22,9 @@ The Cybersecurity Awareness Game is a Java desktop learning application. Its Swi
 | :--- | :--- | :--- | :--- |
 | Sneha | 24E1ARCSF10P163 | snehameenu656@gmail.com | 8957500973 |
 | Upasna Yadav | 24E1ARCSF30P177 | upasnayadav1234567@gmail.com | 7983614073 |
-| Siya Gumber | 24E1ARCSF10P162 | mahadevyadav7375@gmail.com | 9988778348 |
-| Swati Jain | 24E1ARCSF10P163 | sumank76495@gmail.com | 8955830863 |
-| Shruti Kumari | 24E1ARCSF10P163 | aaradhysharma426@gmail.com | 9334191503 |
-
----
+| Siya Gumber | 24E1ARCSF40P162 | siyagumber6@gmail.com | 9988778348 |
+| Swati Jain | 24E1ARCSF30P171| 123jainswati2006@gmail.com | 8955830863 |
+| Shruti Kumari | 24E1ARCSF30P159 | 27shrutisingh.11@gmail.com | 9334191503 |
 
 ## Abstract
 
