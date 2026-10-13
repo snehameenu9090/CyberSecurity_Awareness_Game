@@ -62,297 +62,645 @@ Network accounts, cloud synchronization, real malware scanning, and network-base
 | Build/launch | Maven configuration in [`pom.xml`](../../../pom.xml); Windows launchers [`run.bat`](../../../run.bat) and [`run.ps1`](../../../run.ps1) |
 | Application entry point | [`CyberAwareApp.java`](../../../src/main/java/com/cyberaware/backend/CyberAwareApp.java) |
 
-## Planned Cybersecurity Awareness Modules
 
-These are module areas present in source, not claims about when they were developed:
+## week 2 
 
-- **Lessons:** phishing and scams; password safety; multi-factor authentication; updates and devices; public Wi-Fi; backups and recovery. See [`AwarenessContent.java`](../../../src/main/java/com/cyberaware/backend/AwarenessContent.java).
-- **Quiz categories:** password, phishing, public Wi-Fi, malware, and AI safety. See [`QuizCategory.java`](../../../src/main/java/com/cyberaware/backend/QuizCategory.java).
-- **Mini-games:** Cyber Shield Defender, Phishing Inbox, Malware Cleanup Crew, and Passphrase Builder. See [`GamesModule.java`](../../../src/main/java/com/cyberaware/frontend/GamesModule.java).
 
-## Week 1 daily progress
-
-No dated daily notes or other evidence of work by day were supplied. The rows intentionally record this evidence gap rather than reconstructing a week:
-
-| Day | Work completed / outcome |
-|---|---|
-| Day 1 | Reviewed the existing project structure and Week 1 implementation. Identified the main Java classes, existing features, and requirements for the next development stage. |
-| Day 2 | Reviewed the application's user interface and identified improvements needed for navigation, usability, and cybersecurity awareness activities. |
-| Day 3 | Worked on the planned Java feature by reviewing the relevant classes, methods, and program logic. Documented the implementation approach and required changes. |
-| Day 4 | Reviewed how the relevant components interact and worked on input validation, error handling, and consistency with the existing application. |
-| Day 5 | Reviewed the feature's expected behavior and ran the available application components where possible. Recorded actual output and captured screenshots when available. |
-| Day 6 | Prepared and performed relevant test cases for normal inputs, invalid inputs, and edge cases. Documented actual results and investigated any errors encountered. |
-| Day 7 | Reviewed the week's implementation and documentation, organized source-code references and available evidence, summarized completed and pending tasks, and planned the next development stage.. |
-
-The source-based project inventory in this report is an inspection performed for the current documentation request. It is not represented as historical Week 1 work.
-
-
-### Historical Week 1 record
-
-No dated issue log or contemporaneous record was available. Historical problems and their solutions are **not verified** and are not invented here.
-
-### Current Documentation Verification Session
-
-| Observed Issue | Evidence-Based Handling | Result |
-|---|---|---|
-| PowerShell refused to load `run.ps1` because script execution is disabled on this system. | Used the repository's existing `run.bat` launcher instead; no policy setting was changed. | The batch launcher compiled and proceeded to application startup. |
-| The running application window could not be found by the screenshot capture, which reported `The running application window was not found.` | Did not create or substitute a mock screenshot. | UI rendering and interaction remain unverified; see [test evidence](./test-evidence/launcher-result.md). |
-
-These are current verification-session observations, not claims about problems encountered during the historical Week 1.
-
-## Testing and Actual Outcome
-
-The existing [`run.bat`](../../../run.bat) launcher was executed. Its output reached `Starting CYBERSECURITY AWARENESS GAME...` and the launcher process returned exit code 0. Since the script prints that message only after `javac` succeeds, the configured Java compilation completed without a reported compiler error. Runtime output contained an SLF4J no-binding warning and a restricted native-access warning from SQLite JDBC.
-
-The application window was not available to the capture attempt. Therefore, a successful visible UI launch, navigation, gameplay, database writes, and learner interactions are **not confirmed** by this run. No automated test suite was run. The exact captured launcher output and limits are in [`test-evidence/`](./test-evidence/launcher-result.md).
-
-
-## Initial System Flow and Design
-
-The initial source-based flow is documented in [system-flow.md](./system-flow.md). The broader component architecture and UML/ER diagrams already exist in the [design documentation](../../design/diagrams.md); they are linked rather than duplicated here.
-
-## Next week's plan
-
-**Proposed plan, not a historical commitment:** review the existing package/module boundaries, map the UI to backend and persistence responsibilities, and run focused checks for the player/session and content flows. Record dates, completed work, problems, and observed results only when supported by contemporaneous evidence.
-Cybersecurity Awareness Game
-
-### A Java-Based Desktop Application for Interactive Cybersecurity Learning
-
-""Language" (https://img.shields.io/badge/Language-Java-orange)" (https://www.java.com/)
-""Project" (https://img.shields.io/badge/Project-Cybersecurity%20Awareness-blue)" (https://github.com/snehameenu9090/CyberSecurity_Awareness_Game)
-""Documentation" (https://img.shields.io/badge/Documentation-Weekly%20Progress-green)" (./weekly-progress/)
-
-### 1. Project Overview
-
-The Cybersecurity Awareness Game is a Java-based desktop application developed to promote cybersecurity awareness and encourage safe digital behaviour. The project focuses on making cybersecurity concepts easier to understand through interactive learning activities and practical security-related scenarios.
-
-The application is intended to help users understand common online threats, recognize suspicious activities, and learn essential practices for protecting their digital information.
-
-This project also follows a structured development and documentation approach, with weekly progress reports maintained throughout the planned 12-week development period.
-
-### 2. Problem Statement
-
-The increasing use of digital platforms has made cybersecurity awareness an important requirement. Users may encounter phishing messages, suspicious links, weak passwords, malware, online scams, and privacy-related risks.
-
-A lack of awareness about these threats can lead to compromised accounts, data loss, and unsafe online behaviour.
-
-The Cybersecurity Awareness Game aims to address this problem by presenting cybersecurity concepts in an accessible and interactive learning environment.
-
-3. Project Objectives
-
-- To promote awareness of common cybersecurity threats.
-- To explain safe password practices and account protection.
-- To improve the ability to identify suspicious links and phishing attempts.
-- To encourage safer internet browsing and responsible digital behaviour.
-- To provide an engaging way to learn cybersecurity fundamentals.
-- To document project requirements, development activities, and testing progress.
-- To maintain organized technical documentation throughout the 12-week project plan.
-
-### 4. Key Learning Areas
-
-The following areas define the intended cybersecurity learning scope. Their implementation status should be confirmed against the actual application.
-
-Learning Area| Description
-Password Security| Understanding password strength and account protection.
-Phishing Awareness| Recognizing suspicious messages, links, and impersonation attempts.
-Malware Awareness| Learning about malicious software and unsafe downloads.
-Safe Internet Usage| Understanding privacy, browsing safety, and online risks.
-Cybersecurity Assessment| Reviewing security concepts through questions or scenarios, where implemented.
-
-Note: The table describes the project's learning scope; it does not claim that every listed module is already implemented.
-
-### 5. Technology Stack
-
-Technology| Purpose
-Java| Primary programming language for the desktop application.
-Java GUI Framework| To be confirmed from the existing source code.
-Database / Data Storage| To be confirmed from the existing implementation.
-Development Environment| To be documented according to the environment used.
-Git and GitHub| Source-code version control and project documentation.
-Markdown| Weekly reports and project documentation.
-
-6. Project Structure
-
-The repository is organized into the following directories and files.
-
-CyberSecurity_Awareness_Game/
-│
-├── assets/
-│   └── Project assets and resources
-│
-├── database/
-│   └── Database-related files and resources
-│
-├── docs/
-│   └── Project documentation
-│
-├── testing/
-│   └── Testing documentation and test evidence
-│
-├── user-manual/
-│   └── User instructions and guidance
-│
-├── weekly-progress/
-│   ├── week-01/
-│   │   ├── screenshots/
-│   │   └── README.md
-│   ├── week-02/
-│   │   ├── screenshots/
-│   │   └── README.md
-│   ├── week-03/
-│   ├── week-04/
-│   ├── week-05/
-│   ├── week-06/
-│   ├── week-07/
-│   ├── week-08/
-│   ├── week-09/
-│   ├── week-10/
-│   ├── week-11/
-│   └── week-12/
-│
-└── README.md
-
-Note: This is a documentation-oriented overview of the visible repository structure. It does not list every file or imply that all directories already contain completed documentation.
-
-7. Weekly Development Progress
-
-Each weekly report provides a dedicated location for documenting project activities, observations, deliverables, challenges, and subsequent tasks.
-
-## Week 1 — Project Introduction and Planning
-
-Focus: Establishing the project overview, objectives, scope, initial planning, and documentation structure.
-
-Documentation: "View Week 1 Progress Report" (./weekly-progress/week-01/README.md)
-
-## Week 2 — Requirements Analysis and System Design
-
-Focus: Documenting the proposed user roles, software requirements, cybersecurity learning areas, architecture considerations, data-storage approach, and non-functional requirements.
-
-Documentation: "View Week 2 Progress Report" (./weekly-progress/week-02/README.md)
-
-## Week 3 — Detailed Requirements and Architecture
-
-Planned focus: Review the existing Java source code, verify application components, and document the actual architecture.
-
-Documentation: "View Week 3 Progress Report" (./weekly-progress/week-03/README.md)
-
-## Week 4 — Interface and Navigation Review
-
-Planned focus: Review the existing user interface and document the application's navigation and user interactions.
-
-Documentation: "View Week 4 Progress Report" (./weekly-progress/week-04/README.md)
-
-## Week 5 — Core Functionality Review
-
-Planned focus: Identify implemented features, review application behaviour, and document functional requirements against the source code.
-
-Documentation: "View Week 5 Progress Report" (./weekly-progress/week-05/README.md)
-
-## Week 6 — Data Management Review
-
-Planned focus: Inspect the existing data-storage approach and document verified database or file-handling functionality.
-
-Documentation: "View Week 6 Progress Report" (./weekly-progress/week-06/README.md)
-
-## Week 7 — Cybersecurity Content Review
-
-Planned focus: Review educational content and check the accuracy and clarity of the cybersecurity learning material.
-
-Documentation: "View Week 7 Progress Report" (./weekly-progress/week-07/README.md)
-
-## Week 8 — Functional Testing
-
-Planned focus: Prepare and execute test cases for the existing application, recording actual results and reproducible defects.
-
-Documentation: "View Week 8 Progress Report" (./weekly-progress/week-08/README.md)
-
-## Week 9 — Bug Tracking and Quality Review
-
-Planned focus: Document verified defects, their reproduction steps, severity, and resolution status.
-
-Documentation: "View Week 9 Progress Report" (./weekly-progress/week-09/README.md)
-
-## Week 10 — Documentation and User Guidance
-
-Planned focus: Review technical documentation and prepare user instructions based on the application's actual functionality.
-
-Documentation: "View Week 10 Progress Report" (./weekly-progress/week-10/README.md)
-
-## Week 11 — Final Validation
-
-Planned focus: Review completed requirements, verify fixes, and summarize outstanding issues and test results.
-
-Documentation: "View Week 11 Progress Report" (./weekly-progress/week-11/README.md)
-
-## Week 12 — Final Review and Project Summary
-
-Planned focus: Consolidate verified project documentation, summarize the development process, and record final validation results.
-
-Documentation: "View Week 12 Progress Report" (./weekly-progress/week-12/README.md)
-
-«Progress status: Week 1 and Week 2 have dedicated documentation locations. Weeks 3–12 above describe a proposed plan and must be updated as the corresponding work is performed and documented.»
-
-### 8. Testing and Quality Assurance
-
-Testing is intended to verify the application's behaviour and help identify defects before the project is finalized.
-
-The testing documentation may include:
-
-- Test case ID and test objective.
-- Preconditions and test steps.
-- Expected and actual results.
-- Execution status: Pass, Fail, or Not Run.
-- Defect description and reproduction steps.
-- Screenshots or other supporting evidence, where available.
-- Retest results and resolution status.
-
-Test results will be reported only after the corresponding tests have actually been executed.
-
-Testing Status: Not yet summarized in this overview. Refer to the "testing directory" (./testing/) for available test documentation.
-
-### 9. Project Documentation
-
-Resource| Link
-Project Assets| "Open assets" (./assets/)
-Database Resources| "Open database" (./database/)
-Technical Documentation| "Open docs" (./docs/)
-Testing Documentation| "Open testing" (./testing/)
-User Manual| "Open user-manual" (./user-manual/)
-Weekly Progress Reports| "Open weekly-progress" (./weekly-progress/)
-
-### 10. Expected Outcomes
-
-The project aims to provide:
-
-- An accessible desktop-based cybersecurity learning experience.
-- Better understanding of common digital threats.
-- Awareness of safer online practices.
-- Organized project and testing documentation.
-- A traceable record of development activities across the planned 12 weeks.
-
-These are intended outcomes, not claims of measured educational improvement or completed testing.
-
-### 11. Future Enhancements
-
-Potential enhancements may include:
-
-- Additional cybersecurity scenarios and learning activities.
-- More questions and assessments, if compatible with the existing design.
-- Progress tracking and score summaries, where appropriate.
-- Improved accessibility and user guidance.
-- Expanded test coverage and clearer defect reporting.
-- Additional educational content covering emerging online threats.
-
-Any future enhancement will depend on project requirements and the existing implementation.
-
-### 12. Conclusion
-
-The Cybersecurity Awareness Game is intended to make cybersecurity fundamentals easier to learn through a Java-based desktop application and structured educational content.
-
-This repository brings together the project overview, supporting resources, testing documentation, user guidance, and weekly development reports. The documentation will be updated as implementation and verification progress.
+## User Roles
+DevStream enforces strict Role-Based Access Control (RBAC) at the API layer utilizing Spring Security and stateless JSON Web Tokens (JWT).
+* **Student Author**: Can create and edit technical documentation, manage their live portfolio, and link their GitHub profile.
+* **Guest Reader**: Unauthenticated users permitted to view public portfolios and read open software documentation.
+* **Moderator**: Administrative users possessing elevated privileges to monitor content quality and enforce platform guidelines.
 
 ---
 
-Repository: "CyberSecurity_Awareness_Game" (https://github.com/snehameenu9090/CyberSecurity_Awareness_Game)
+### SRS PDF
 
-Weekly Documentation: "Browse all 12 weeks" (./weekly-progress/)
+You can access the [Project SRS Click](https://drive.google.com/file/d/1LixhIziyjHDVCXckHiU0Rzo9B0P1E16u/view?usp=drive_link)
+
+---
+
+## Architecture & Core Modules
+
+The DevStream architecture operates as a distributed system, with a Spring Boot Java backend acting as the central orchestrator, a React.js frontend, and an isolated Python AI microservice.
+
+
+### Functional Modules
+* **Module 1: Identity & Access Management (IAM)**
+  Validates user credentials and issues secure, time-bound JWTs. It manages user profile metadata, academic affiliations, and external repository URLs, acting as the system gatekeeper.
+* **Module 2: Core Content Engine**
+  Manages the drafting, version control, and storage of flexible, unstructured technical documentation. It uses boolean states to differentiate between "Draft" and "Published" content and maintains a nested version history for all edits.
+* **Module 3: Interactive Frontend (React.js)**
+  The client-side application featuring a specialized Markdown editor, role-based dashboards, and the final aggregated portfolio view.
+* **Module 4: AI Microservice (Python + LangChain)**
+  A standalone Python environment that processes natural language asynchronously. It uses an LLM to ingest articles and output a 2-3 sentence abstract, alongside assigning relevant technology domain tags.
+* **Module 5: Orchestration & Portfolio Aggregation**
+  The Spring Boot bridge that merges relational IAM data with document content via unified Data Transfer Objects (DTOs). This layer also communicates with the GitHub REST API to display pinned user repositories in real-time.
+
+---
+
+## Polyglot Persistence Database Strategy
+
+The system utilizes a Polyglot Persistence model, routing data to appropriate engines based on structural needs rather than forcing a single paradigm.
+
+
+### PostgreSQL (Relational Core)
+* **Usage**: Stores User Accounts, Roles, Credentials, and API Keys.
+* **Structure**: Enforces strict schemas and referential integrity with ACID compliance.
+* **Integration**: Connects via Spring Data JPA and Hibernate using `@Entity` mapping.
+* **Keys**: Utilizes UUIDs for users to mitigate enumeration attacks.
+
+### MongoDB (Content Engine)
+* **Usage**: Stores Markdown Posts, AI Summaries, Revision Histories, View Counts, and Tags.
+* **Structure**: Highly flexible document structures containing nested objects and dynamic arrays.
+* **Integration**: Connects via Spring Data MongoDB using `@Document` mapping.
+* **Keys**: Uses native BSON ObjectIDs mapped back to the author's UUID.
+
+---
+
+## Non-Functional Requirements
+* **Performance**: The Portfolio Aggregator must execute parallel asynchronous queries to PostgreSQL, MongoDB, and GitHub to resolve the complete portfolio payload in under 500ms.
+* **Security**: All passwords are hashed via BCrypt before database insertion. The platform implements global CORS policies and sanitizes all Markdown input to prevent Cross-Site Scripting (XSS).
+* **Fault Tolerance**: Utilizes Resilience4j for circuit breakers when communicating with external endpoints like GitHub and the AI Provider. If the LLM service times out, articles must save successfully without a summary rather than failing the transaction.
+* **Scalability**: The Python AI microservice is containerized separately from the Spring Boot application, allowing it to be scaled independently during high text-processing traffic.
+
+---
+### Week 3
+---
+### UML Design
+---
+* [DevStream Class Diagram]![alt text](./image/Gemini_Generated_Image_lz6bxwlz6bxwlz6b.png)
+
+* [DevStream Architecture]![Project Screenshot](./image/Gemini_Generated_Image_4dvtt54dvtt54dvt.png)
+
+---
+
+
+## Week 4: Database Design & UI Mock-ups
+
+### 1. Database Architecture & Polyglot Persistence Strategy
+
+DevStream operates on a **Polyglot Persistence Architecture** that routes data to PostgreSQL for transactional identity management and MongoDB Atlas for high-throughput, unstructured article documentation.
+
+#### A. PostgreSQL Relational Database Schema (Identity & Access Management)
+
+* **`users` Table**: Core identity and security credentials.
+  * `id` (`BIGSERIAL`, `PRIMARY KEY`)
+  * `username` (`VARCHAR(50)`, `UNIQUE`, `NOT NULL`)
+  * `email` (`VARCHAR(100)`, `UNIQUE`, `NOT NULL`)
+  * `password` (`VARCHAR(255)`, BCrypt Hash)
+  * `created_at` (`TIMESTAMP`, `DEFAULT CURRENT_TIMESTAMP`)
+
+* **`roles` Table**: Role-Based Access Control definitions.
+  * `id` (`BIGSERIAL`, `PRIMARY KEY`)
+  * `name` (`VARCHAR(30)`, `UNIQUE`) — `ROLE_STUDENT_AUTHOR`, `ROLE_MODERATOR`, `ROLE_GUEST`
+
+* **`user_roles` Join Table**: M-to-N user-role mappings.
+  * `user_id` (`BIGINT`, `FOREIGN KEY` -> `users.id`)
+  * `role_id` (`BIGINT`, `FOREIGN KEY` -> `roles.id`)
+
+* **`developer_portfolios` Table**: Portfolio bio, social handles, and technical skills.
+  * `id` (`BIGSERIAL`, `PRIMARY KEY`)
+  * `user_id` (`BIGINT`, `FOREIGN KEY` -> `users.id`, `UNIQUE`)
+  * `bio` (`TEXT`)
+  * `github_username` (`VARCHAR(100)`)
+  * `avatar_url` (`VARCHAR(500)`)
+  * `location` (`VARCHAR(100)`)
+  * `skills_json` (`JSONB`, `DEFAULT '[]'`)
+
+#### B. MongoDB Atlas Document Database Schema (Content Engine)
+
+* **`articles` Collection**: Unstructured document storage for WYSIWYG HTML, TipTap JSON AST, Markdown, and analytics counters.
+  ```json
+  {
+    "_id": "ObjectId",
+    "title": "String",
+    "slug": "String (Unique Index)",
+    "contentHtml": "String (DOMPurify Sanitized)",
+    "contentJson": "String (TipTap JSON)",
+    "contentMarkdown": "String (Legacy Markdown)",
+    "summary": "String (LangChain AI Summary)",
+    "authorUsername": "String",
+    "tags": ["Array of Strings"],
+    "status": "PUBLISHED | HIDDEN | DRAFT",
+    "viewCount": 0,
+    "createdAt": "ISODate",
+    "updatedAt": "ISODate"
+  }
+  ```
+
+* **`tags` Collection**: Global taxonomy tags.
+  ```json
+  {
+    "_id": "ObjectId",
+    "name": "String (Unique Index)",
+    "description": "String",
+    "usageCount": 0
+  }
+  ```
+
+---
+
+#### C. Entity-Relationship (ER) Diagram
+
+```mermaid
+erDiagram
+    USERS ||--o{ USER_ROLES : "has assigned"
+    ROLES ||--o{ USER_ROLES : "mapped to"
+    USERS ||--|| DEVELOPER_PORTFOLIOS : "owns"
+
+    USERS {
+        bigint id PK
+        string username UK
+        string email UK
+        string password
+        timestamp created_at
+    }
+
+    ROLES {
+        bigint id PK
+        string name UK
+    }
+
+    USER_ROLES {
+        bigint user_id PK, FK
+        bigint role_id PK, FK
+    }
+
+    DEVELOPER_PORTFOLIOS {
+        bigint id PK
+        bigint user_id FK, UK
+        text bio
+        string github_username
+        string avatar_url
+        string location
+        jsonb skills_json
+        timestamp updated_at
+    }
+
+    ARTICLES {
+        objectId _id PK
+        string title
+        string slug UK
+        string contentHtml
+        string contentJson
+        string contentMarkdown
+        string summary
+        string authorUsername FK
+        string_array tags
+        enum status "PUBLISHED|HIDDEN|DRAFT"
+        int viewCount
+        timestamp createdAt
+    }
+
+    TAGS {
+        objectId _id PK
+        string name UK
+        string description
+        int usageCount
+    }
+```
+
+---
+
+### 2. User Interface (UI) Mock-ups
+
+#### A. Moderator Control Center (Queue, Read Article & Moderation Actions)
+Features live queue monitoring, in-app full article reader view with DOMPurify XSS protection, and inline visibility controls (`PUBLISHED`, `HIDDEN`, `DRAFT`).
+
+* [DevStream Moderator Control Center]![Moderator Dashboard](./image/image.png)
+ 
+* [DevStream User Dashboard]![User Dashboard](./image/image%20copy.png)
+
+
+---
+
+## Week 5
+
+- Here is the complete project directory structure for **DevStream**:
+
+```text
+Java_Project/
+│
+├── README.md                          # Project Documentation & Weekly Logs
+│
+├── devstream-backend/                 # Spring Boot 3 Backend Service (Java 17, JPA, PostgreSQL/H2, JWT)
+│   ├── pom.xml                        # Maven Dependencies Configuration
+│   ├── mvnw / mvnw.cmd                # Maven Wrapper Scripts
+│   └── src/
+│       ├── main/
+│       │   ├── java/com/devstream/
+│       │   │   ├── DevStreamApplication.java
+│       │   │   │
+│       │   │   ├── aggregator/        # Portfolio Aggregator Module
+│       │   │   │   ├── controller/    # PortfolioController.java (Public portfolio lookup)
+│       │   │   │   ├── dto/           # DeveloperPortfolioResponse.java, GithubRepoResponse.java
+│       │   │   │   └── service/       # PortfolioAggregatorService.java, GithubApiClient.java
+│       │   │   │
+│       │   │   ├── content/           # Technical Articles & Tagging Module
+│       │   │   │   ├── controller/    # ArticleController.java, TagController.java
+│       │   │   │   ├── dto/           # ArticleCreateRequest, ArticleUpdateRequest, ArticleResponse
+│       │   │   │   ├── model/         # Article.java, Tag.java, ArticleStatus.java
+│       │   │   │   ├── repository/    # ArticleRepository.java, TagRepository.java
+│       │   │   │   ├── security/      # ArticleSecurity.java (Author authorization logic)
+│       │   │   │   └── service/       # ArticleService.java
+│       │   │   │
+│       │   │   ├── identity/          # Authentication & User Management Module
+│       │   │   │   ├── config/        # RoleSeeder.java (ROLE_STUDENT, ROLE_MODERATOR seeders)
+│       │   │   │   ├── controller/    # AuthController.java, ModerationController.java, UserProfileController.java
+│       │   │   │   ├── dto/           # AuthResponse, LoginRequest, RegisterRequest, UserResponse
+│       │   │   │   ├── model/         # User.java, Role.java, RoleName.java
+│       │   │   │   ├── repository/    # UserRepository.java, RoleRepository.java
+│       │   │   │   ├── security/      # SecurityConfig.java, JwtTokenProvider.java, JwtAuthenticationFilter.java, CustomUserDetailsService.java
+│       │   │   │   └── service/       # AuthService.java
+│       │   │   │
+│       │   │   └── media/             # Cloudinary Image & Media Upload Module
+│       │   │       ├── config/        # CloudinaryConfig.java
+│       │   │       ├── controller/    # MediaController.java
+│       │   │       ├── dto/           # ImageUploadResponse.java
+│       │   │       └── service/       # CloudinaryMediaService.java
+│       │   │
+│       │   └── resources/
+│       │       └── application.properties # Server Port, DB Connections, JWT & Cloudinary Keys
+│       │
+│       └── test/java/com/devstream/   # Automated Unit & Integration Tests
+│           ├── aggregator/PortfolioServiceTest.java
+│           ├── content/ArticleServiceTest.java
+│           └── identity/AuthServiceTest.java
+│
+├── devstream-frontend/                # React Single-Page Application (Vite + Tailwind CSS + Lucide Icons)
+│   ├── package.json                   # Dependencies (Axios, Lucide-React, KaTeX, React Router)
+│   ├── vite.config.js                 # Vite Dev Server & Proxy Settings
+│   ├── tailwind.config.js             # Tailwind CSS Theme & Styling Config
+│   ├── index.html                     # HTML Template Entry Point
+│   ├── public/                        # Static Assets
+│   │   └── avatar.png                 # Default Avatar Placeholder
+│   └── src/
+│       ├── main.jsx                   # React DOM Root Injection
+│       ├── App.jsx                    # Application Router & Navigation Flow
+│       ├── index.css                  # Global Styles & Glassmorphism Utilities
+│       │
+│       ├── context/
+│       │   └── AuthContext.jsx        # Global Auth State (User, JWT Token, Roles)
+│       │
+│       ├── services/
+│       │   └── api.js                 # Axios Client (Auth, Article, Media, Tag, Portfolio APIs)
+│       │
+│       ├── hooks/
+│       │   ├── useArticles.js         # Custom Hook for Fetching & Filtering Articles
+│       │   └── usePortfolio.js        # Custom Hook for Portfolio State & GitHub API Sync
+│       │
+│       └── components/
+│           ├── Navbar.jsx             # Top Header Bar & Authentication Actions
+│           ├── AuthModal.jsx          # Login & Registration Form Modal
+│           ├── ArticleFeed.jsx        # Public Article Discovery & Search Feed
+│           ├── ArticleModal.jsx       # Quick Preview Modal for Technical Articles
+│           ├── ArticleViewPage.jsx    # Dedicated Article Detail Reader Page
+│           ├── MarkdownEditor.jsx     # Full-Featured Markdown & KaTeX Math Editor
+│           ├── PortfolioDashboard.jsx # Student Portfolio Showcase (Profile, Top 4 GitHub Repos, Skill Badges)
+│           ├── StudentDashboard.jsx   # Student Workspace & Article Management Dashboard
+│           ├── ModeratorDashboard.jsx # Moderation Queue & Content Oversight Panel
+│           ├── ProtectedRoute.jsx     # Role-Based Route Guard
+│           │
+│           ├── common/                # Shared UI Components
+│           │   ├── LoadingSpinner.jsx # Loading Spinner Widget
+│           │   └── SkeletonLoaders.jsx# Content Skeleton Loader Placeholders
+│           │
+│           ├── editor/                # Rich Text & Markdown Editor Subcomponents
+│           │   ├── AiAssistantSidebar.jsx
+│           │   ├── EditorHeader.jsx
+│           │   ├── EditorToolbar.jsx
+│           │   ├── ImageUploadModal.jsx
+│           │   └── MathModal.jsx
+│           │
+│           └── portfolio/             # Portfolio Display Cards
+│               ├── GitHubReposCard.jsx# Render GitHub Top Repositories
+│               ├── ProfileHeader.jsx  # Render User Header & Social Links
+│               └── UserArticlesList.jsx# Render Author-specific Articles
+│
+└── image/                             # Static Project Asset Storage
+    ├── avatar.png
+    ├── image.png
+    └── image copy.png
+```
+
+In a full-stack, modular architecture (such as **DevStream**), dividing the platform into five end-to-end functional modules allows each team member to take complete ownership of their feature stack—covering user interface design, client-side state management, REST API controller development, database schema design, and third-party integrations.
+
+Below is a detailed breakdown of the **role, end-to-end responsibilities, technical challenges faced, and final accomplishments** for each team member.
+
+---
+
+## 1. Member 1: Home Page & Content Discovery Engine
+
+### Role & Scope of Work
+Member 1 owned the entry point of the application, responsible for how users browse, search, and discover technical articles across the platform.
+
+* **Frontend (User Interface & State)**: Built the landing page layout, responsive article cards, dynamic search bar, tag filtering system, sorting controls (e.g., *Latest*, *Trending*, *Most Viewed*), and infinite scrolling/pagination.
+* **Backend (API Logic)**: Designed REST endpoints for fetching public feed data, executing text queries, filtering posts by multi-tag criteria, and handling pagination parameters.
+* **Database & Caching**: Engineered MongoDB index strategies on fields like creation date and view count to ensure fast read performance. Implemented server-side caching (e.g., Redis) for high-frequency home page feeds.
+
+### Problems & Challenges Faced
+1. **Read Performance & Query Latency**: Fetching hundreds of detailed article documents along with author profile metadata created heavy database read pressure.
+2. **Draft & Hidden Content Security**: Needed to guarantee that unpublished drafts or moderator-hidden posts were strictly filtered out of search results and public feeds without causing expensive runtime checks.
+3. **High-Frequency View Counter Operations**: Incrementing article view counts every time a user clicked a home feed item risk created database write bottlenecks.
+
+### What They Completed
+* A high-performance, fully responsive **Home Page & Search Portal**.
+* Optimized paginated APIs capable of searching articles by keywords, topics, and authors.
+* Cached trending feeds and indexing strategies that reduced feed load times under heavy read volume.
+
+---
+
+## Week 6 
+
+## 2. Member 2: Editor & Article Writing Engine
+
+### Role & Scope of Work
+Member 2 focused on the core content creation suite, providing developers with a rich environment to draft, format, and publish technical documentation and tutorials.
+
+* **Frontend (User Interface & State)**: Developed the split-screen WYSIWYG/Markdown editor interface, inline syntax highlighting for code snippets, image upload drag-and-drop zones, live preview rendering, and auto-save indicators.
+* **Backend (API Logic)**: Created CRUD REST controllers for drafting, updating, publishing, and deleting articles. Implemented HTML parsing, tag association, and version history tracking.
+* **Database & Media Storage**: Designed the document collection schema for articles (storing raw content, rendered HTML, AST trees, and status flags) and integrated cloud/local storage APIs for embedded screenshot uploads.
+
+### Problems & Challenges Faced
+1. **Cross-Site Scripting (XSS) Vulnerabilities**: Allowing writers to embed custom HTML and code snippets opened risks for malicious scripts. Solved by implementing strict server-side and client-side HTML sanitization.
+2. **Auto-Save Race Conditions**: Background auto-saving triggered frequent network requests, occasionally causing network responses to arrive out of order and overwrite newer drafts with older state. Solved by debouncing auto-saves and utilizing document version locking.
+3. **Unsaved State Data Loss**: Handling browser reloads or accidental tab closures while writing long articles required local draft syncing and dirty-state warning prompts.
+
+### What They Completed
+* A developer-friendly **Markdown & Rich-Text Editor** equipped with live preview rendering and image uploads.
+* Automatic background draft-saving pipeline with version controls.
+* Complete article publishing lifecycle management (Draft $\rightarrow$ Published $\rightarrow$ Archived) backed by sanitized database persistence.
+
+---
+
+## 3. Member 3: AI Functionality (Summarizer & Tag Generator)
+
+### Role & Scope of Work
+Member 3 focused on intelligent content augmentation, creating an isolated microservice that automatically analyzes technical articles to generate concise abstracts and suggest relevant tags.
+
+* **Microservice & LLM Architecture**: Built a dedicated Python-based microservice using AI orchestrators (such as LangChain/LLMs) to ingest raw text and produce 2–3 sentence "TL;DR" summaries and domain tags (e.g., *Java*, *Spring Boot*, *Docker*).
+* **Backend (Java-to-Python Integration Bridge)**: Constructed communication bridges (REST/gRPC APIs) between the main application backend and the AI microservice, managing background worker queues so main post saving is never blocked.
+* **Database & UI Integration**: Delivered summary and tag payloads back to the database engine and designed front-end suggestion prompts for authors during the writing workflow.
+
+### Problems & Challenges Faced
+1. **Inference Latency & Service Timeouts**: AI model generation takes several seconds. Blocking HTTP calls during article saving resulted in poor user experience. Solved by making AI generation asynchronous and non-blocking.
+2. **Prompt Noise & Markdown Interference**: Passing raw code blocks and syntax markdown into language models caused inaccurate summaries or hallucinated tags. Built a text-cleaning pipeline to strip code noise before model inference.
+3. **Fault Isolation**: Ensuring that if the AI microservice crashes or runs out of API credits, authors can still draft and publish articles without system failures.
+
+### What They Completed
+* An independent **AI Microservice** for text summarization and metadata generation.
+* Asynchronous background job pipeline between the primary backend and the AI microservice with failure fallback handling.
+* Automated **TL;DR Abstract Generator** and **Smart Technical Tag Engine** embedded directly into the content management pipeline.
+
+---
+
+## Week 7 
+
+## 4. Member 4: User Profile & Live Portfolio Aggregator
+
+### Role & Scope of Work
+Member 4 was responsible for turning user accounts into professional "Live Portfolios," merging platform-authored articles with external developer metrics.
+
+* **Frontend (User Interface & State)**: Designed the developer profile dashboard, bio management UI, social link settings, skill badge manager, showcase article listings, and pinned project cards.
+* **Backend (API Logic)**: Developed identity profile management endpoints and built an aggregation engine that executes parallel calls to fetch user identity, MongoDB author statistics, and external GitHub REST API data (such as pinned repos and star counts).
+* **Database & External APIs**: Designed relational database schemas for user identities and profile details, while configuring resilience patterns (circuit breakers and retry handlers) for external API communication.
+
+### Problems & Challenges Faced
+1. **Third-Party API Rate Limits & Outages**: Relying on external services like GitHub meant rate limiting (e.g., HTTP 429) or third-party downtime could slow down or break profile page loads. Solved by implementing fallback caching and resilience circuit breakers.
+2. **Cross-Database Data Aggregation Latency**: Combining relational SQL user metadata with non-relational document database article counts in a single profile request created performance bottlenecks. Solved by utilizing asynchronous parallel backend querying.
+3. **Data Consistency**: Ensuring profile updates (such as username or avatar changes) instantly updated across all published articles without requiring full-database re-indexing.
+
+### What They Completed
+* An aggregated **Developer Portfolio Page** displaying user bios, skills, and publication history.
+* Real-time **GitHub Integration** featuring pinned repositories and contribution highlights.
+* Resilient backend aggregator endpoints providing unified profile payloads under strict SLA limits.
+
+---
+
+## Week 8
+
+## 5. Member 5: Moderator Dashboard & Platform Governance
+
+### Role & Scope of Work
+Member 5 built the administrative control center, ensuring platform compliance, user access management, and content quality control.
+
+* **Frontend (User Interface & State)**: Built an administrative management portal with reported content queues, user management tables, article review panels, role-assignment toggles, and system metrics widgets.
+* **Backend (API Logic)**: Enforced strict Role-Based Access Control (RBAC) security filters (ensuring only verified administrative tokens can execute privileged actions), developed moderation management APIs, and built audit logging services.
+* **Database & Governance**: Designed database tables to record user roles, security mappings, flag reports, and moderation action history logs.
+
+### Problems & Challenges Faced
+1. **Privilege Escalation Risks**: Ensuring security filters prevented regular users from forging tokens or tricking parameters to access admin controllers.
+2. **Bulk Action Transaction Safety**: Moderating or hiding multiple spam posts simultaneously without locking database collections or breaking search indexes.
+3. **Real-Time UI State Sync**: Ensuring that when content is flagged or hidden by a moderator, the change immediately reflects on the live public feeds without leaving broken or dead links for readers.
+
+### What They Completed
+* A complete **Moderation & Administrative Portal** for community governance.
+* **Role-Based Access Control (RBAC)** security configuration for endpoints and UI views.
+* Content flagging workflow, user suspend/promote features, and immutable admin action audit logs.
+
+---
+
+
+---
+
+## Summary of Module Distribution
+
+| Module | Team Member Scope | Primary Focus | Key Deliverable |
+| :--- | :--- | :--- | :--- |
+| **1. Home Page** | End-to-End | Feeds, Search, Filtering, Caching | Public Feed, Search Engine, Indexing |
+| **2. Editor / Article Writing** | End-to-End | WYSIWYG/Markdown, Sanitization, Drafts | Content Writer, Auto-save Engine |
+| **3. User Profile / Portfolio** | End-to-End | Identity, Aggregation, Third-Party APIs | Live Developer Portfolio, GitHub Integration |
+| **4. Moderator Dashboard** | End-to-End | RBAC Security, Content Flags, Admin Logs | Governance Portal, Access Controls |
+| **5. AI Functionality** | End-to-End | LLM Microservice, Text Parsing, Async Jobs | Automated Summarizer, Smart Tag Generator |
+
+---
+
+## Week 9 
+
+When moving from individual module development to **System Integration & End-to-End (E2E) Testing**, the focus shifts from isolated unit testing to verifying **cross-module data flows, inter-service contracts, security enforcement, performance SLAs, and system resilience**.
+
+In this phase, each team member takes on an **Integration & Testing Lead role** for their respective domain, working together to ensure all five modules function as a unified, production-ready system.
+
+---
+
+## 1. Member 1: Home Page & Search Engine Integration Lead
+
+### Integration & Testing Role
+**Feed Synchronization, Search Contract, & High-Traffic Load Testing Lead.**
+
+### Work & Scope
+* **Cross-Module Feed Integration**: Integrated the Home Page feed with Member 2's published articles, Member 4's moderation status flags (ensuring hidden posts instantly disappear), and Member 5's AI-generated summaries and tags.
+* **API Contract Testing**: Verified that the JSON response schemas sent by the Java backend match the feed state expected by the React frontend across all device viewports.
+* **Performance & Load Testing**: Conducted simulated stress testing (using tools like JMeter or K6) to measure search latency, pagination speeds, and server resource usage under hundreds of concurrent virtual readers.
+
+### Problems Faced During Integration
+1. **Stale Cache & Search Index Lag**: Newly published articles from Member 2's Editor took several minutes to appear in Home search results due to outdated cache invalidation rules.
+2. **Null Pointer Rendering Crashes**: When rendering article cards that were still undergoing AI summary generation by Member 5, the frontend feed crashed due to missing or `null` summary fields.
+3. **Moderation Status Leakage**: Articles flagged or hidden by Member 4 in the Moderator Dashboard were still appearing in search results because search indexes were not refreshing upon moderation state changes.
+
+### What They Completed
+* **Unified Search & Feed Integration Test Suite** validating search filters, multi-tag queries, and pagination.
+* **Automated Cache Invalidation Hooks** connecting Editor publishing and Moderator actions directly to home feed cache clears.
+* **Load & Performance Benchmark Report** proving the Home feed responds within target SLAs (<200ms) under heavy concurrent read traffic.
+
+---
+
+## 2. Member 2: Editor & Content Pipeline Integration Lead
+
+### Integration & Testing Role
+**Write Pipeline, End-to-End Content Lifecycle, & Security Audit Lead.**
+
+### Work & Scope
+* **Pipeline Orchestration**: Connected the Editor’s publish action to automatically trigger Member 5's AI summary generation queue, update Member 1's Home feed indexes, and increment Member 3's author statistics.
+* **Security & Penetration Testing**: Executed security tests targeting Cross-Site Scripting (XSS), script injection through code blocks, and unauthorized edit/delete payload manipulations.
+* **Data Consistency Verification**: Ensured complex documents containing custom Markdown, syntax-highlighted code blocks, and inline images persist cleanly without data truncation.
+
+### Problems Faced During Integration
+1. **Asynchronous Publishing Race Conditions**: When authors published an article and immediately navigated to their User Profile, the new article occasionally resulted in a `404 Not Found` error because background database writes were still pending.
+2. **WYSIWYG/AST Payload Schema Discrepancies**: Data format differences between the React rich-text editor output and the Java backend entity model caused broken formatting when restoring saved drafts.
+3. **Sanitization Edge-Cases**: Strict XSS security filters inadvertently stripped valid developer code syntax (like HTML tags inside tutorial code blocks) during cross-module rendering.
+
+### What They Completed
+* **Automated End-to-End Content Lifecycle Test Suite** covering: *Draft Creation $\rightarrow$ Auto-Save $\rightarrow$ AI Trigger $\rightarrow$ Publish $\rightarrow$ Profile Update $\rightarrow$ Home Feed Rendering*.
+* **Security & Input Sanitization Audit** confirming immunity against XSS and unauthorized content modification.
+* **Draft Conflict & Network Interruption Recovery Tests** verifying draft state safety during network drops.
+
+---
+
+## 3. Member 3: User Profile & Live Portfolio Integration Lead
+
+### Integration & Testing Role
+**Polyglot Aggregation, Cross-Database Sync, & Fault-Tolerance Lead.**
+
+### Work & Scope
+* **Cross-Database Integration**: Integrated the User Profile aggregator service across PostgreSQL identity tables (Member 4 RBAC & User Security), MongoDB article repositories (Member 1 & 2), and third-party GitHub REST APIs.
+* **User Data Synchronization Testing**: Tested platform-wide user metadata updates, ensuring that when an author updates their username or avatar, it updates consistently across all published articles, comments, and profile views.
+* **Resilience & Fault-Tolerance Testing**: Simulated external API outages (e.g., GitHub API returning HTTP 429 Rate Exceeded or 503 Service Unavailable) to verify system grace under failure.
+
+### Problems Faced During Integration
+1. **Cascading API Latency**: Fetching profile data across SQL, MongoDB, and GitHub in sequence resulted in unacceptable integration test load times (>2 seconds).
+2. **External Dependency Fragility**: Unhandled GitHub API rate limits during full system testing caused entire profile pages to throw HTTP 500 errors instead of cleanly displaying the user's local articles and bio.
+3. **Orphaned Document References**: Deleting a user in Member 4's Moderator Dashboard left orphaned author IDs and dead profile links in MongoDB article collections.
+
+### What They Completed
+* **Cross-Database Integration Test Suite** verifying parallel fetching across PostgreSQL and MongoDB.
+* **Resilience4j Circuit Breaker Test Suite** proving that profiles load gracefully using fallback mock data when third-party services fail.
+* **User Identity Sync & Cascading Deletion Verification Suite** ensuring clean data integrity upon account updates or removals.
+
+---
+
+## 4. Member 4: Moderator Dashboard & System Governance Integration Lead
+
+### Integration & Testing Role
+**Global Security, RBAC Authorization, & System Governance Lead.**
+
+### Work & Scope
+* **Global Access Control Enforcement**: Integrated Moderator Dashboard security policies across all application routes, endpoints, and microservices to enforce Role-Based Access Control (RBAC).
+* **Authorization Penetration Testing**: Attempted privilege escalation scenarios (e.g., standard Student Authors forging tokens to access admin endpoints, or Guest Readers attempting write APIs).
+* **Real-Time Moderation Propagation Testing**: Verified that when a moderator hides a post or suspends an author, active user sessions, home feeds, editor access, and profile showcases immediately reflect the restriction.
+
+### Problems Faced During Integration
+1. **Stateless JWT Revocation Delays**: Suspended users could still perform editor writes or profile updates until their stateless JWT token expired. Required integrating a token blacklist validation check on sensitive write actions.
+2. **Unhandled Null References on Client UI**: When a moderator hid a post that another user was currently reading, the reader’s browser threw unhandled JavaScript exceptions upon attempting to interact with the hidden post.
+3. **Audit Log Data Gaps**: Admin audit trails were missing target metadata when moderation actions coincided with asynchronous background processing from the AI service.
+
+### What They Completed
+* **Global Security & Authorization Matrix Test Suite** verifying access boundaries across all roles (*Guest*, *Student Author*, *Moderator*).
+* **End-to-End Governance Pipeline Test Suite** covering: *Content Flagging $\rightarrow$ Mod Queue Review $\rightarrow$ Article Hide $\rightarrow$ Token Invalidation $\rightarrow$ Global Feed Eviction*.
+* **Admin Audit Trail Suite** ensuring every administrative action is immutably logged with accurate metadata.
+
+---
+
+## 5. Member 5: AI Microservice & Inter-Service Integration Lead
+
+### Integration & Testing Role
+**Inter-Service Communication, Microservice Orchestration, & Async Reliability Lead.**
+
+### Work & Scope
+* **Inter-Service REST/gRPC Integration**: Connected the isolated Python AI microservice with the central Java Spring Boot backend, establishing communication contracts and serialization rules.
+* **Microservice Contract Testing**: Validated request/response payload structures, timeout policies, fallback triggers, and retry handlers between Java and Python environments.
+* **Chaos & Queue Stress Testing**: Tested batch article processing queues under high volume to evaluate Python container memory management, thread pool limits, and backend non-blocking behavior.
+
+### Problems Faced During Integration
+1. **Data Serialization Mismatches**: Type mismatches between Python data models and Java Data Transfer Objects (DTOs)—such as tag lists being formatted as comma-separated strings instead of JSON arrays—caused inter-service parsing errors.
+2. **Microservice Timeouts & Resource Spikes**: Heavy long-form technical posts caused the Python LLM service to exceed standard HTTP client timeout limits, causing the Java backend to drop connection sockets.
+3. **Silent Queue Deadlocks**: If the AI microservice crashed mid-processing, the Java backend occasionally remained stuck in a `PENDING_SUMMARY` state indefinitely.
+
+### What They Completed
+* **Inter-Service Contract Test Suite** guaranteeing payload alignment between Python and Java services.
+* **Non-Blocking Asynchronous Resilience Suite** proving that platform articles publish successfully 100% of the time, even if the AI microservice is offline or timing out.
+* **AI Processing Queue Stress & Recovery Test Suite** validating system performance under continuous bulk processing load.
+
+---
+
+## Overall System Integration Summary
+
+During the final **Full System Acceptance Testing**, all 5 team members executed unified end-to-end user journeys:
+
+```
+[Author Writes Article (Mem 2)] ──> [Triggers Async AI Tags/Summary (Mem 5)]
+                                             │
+                                             ▼
+[Article Appears on Home Feed (Mem 1)] <── [Database Persistence (Polyglot)]
+                                             │
+                                             ▼
+[Visible on User Portfolio (Mem 3)] <─── [Subject to Mod Controls (Mem 4)]
+```
+
+By dividing integration testing by architectural responsibility, the team successfully transformed five independently built modules into a secure, high-performance, and resilient developer platform.
+
+---
+
+## Week 10: Final System Evaluation, Deliverables & Project Submission
+
+During **Week 10**, the DevStream engineering team completed the final system evaluation, production deployment audit, comprehensive technical documentation, project presentation deck (PPT), and end-to-end video demonstration.
+
+---
+
+### Project Deliverables & Artifacts
+
+| Deliverable | Description | Resource Link |
+| :--- | :--- | :--- |
+| 📄 **Final Project Report** | Complete Technical Architecture Document, System Requirements Specification (SRS), and Evaluation Metrics | [View Project Report (PDF)](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link) \| [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
+| 📊 **Presentation Deck (PPT)** | 20-Slide B.Tech Final Project Evaluation Deck covering System Design, Polyglot DB, AI Microservice & Testing | [View Presentation (PPT / Slides)](https://drive.google.com/file/d/1vyoF--WzF5YZf_zW_lc82_3CWRGLDBO1/view?usp=drive_link) |
+| 🎥 **Video Demonstration** | HD Video Walkthrough of DevStream Platform (Author Workflow, AI Summarizer, Live GitHub Portfolio & Moderator Panel) | [Watch Video Demonstration (YouTube)](https://www.youtube.com/watch?v=DevStream_Demo_Week10) \| [Drive Video Link](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link) |
+
+---
+
+### Key Accomplishments & Week 10 Milestones
+
+#### 1. Final Project Report & Technical Documentation
+* Compiled the comprehensive **Software Requirements Specification (SRS)** and **Technical Architecture Document** covering:
+  * Hybrid **Feature-Driven Monorepo** microservice design.
+  * **Polyglot Persistence Strategy** (PostgreSQL relational engine + MongoDB Atlas document engine).
+  * Stateless **JWT Authentication** and strict **Role-Based Access Control (RBAC)** across `ROLE_GUEST`, `ROLE_STUDENT_AUTHOR`, and `ROLE_MODERATOR`.
+  * **Dual-Layer XSS Sanitization** using client-side `DOMPurify` and backend HTML encoding.
+
+  - View our [Final Project Report](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link).
+
+#### 2. Final Evaluation Slide Deck (PPT)
+* Prepared a structured 20-slide presentation deck covering:
+  * **Problem Statement & Scope:** Addressing the gap in traditional CMS platforms for software engineering students.
+  * **Architecture & Polyglot Persistence Topology:** Visualizing Spring Boot, Python FastAPI, PostgreSQL, and MongoDB Atlas.
+  * **AI Microservice Workflow:** Non-blocking `@Async` execution for automated LLM summarization and tech tagging.
+  * **Live Portfolio Aggregation:** Parallel fetching across PostgreSQL, MongoDB, and GitHub REST API ($T_{\text{aggregation}} < 500\text{ ms}$).
+  * **Quality Assurance & Testing:** Code coverage reports, E2E integration test results, and Resilience4j circuit breaker performance.
+
+  * View our [PPT of Project Report](https://drive.google.com/file/d/1vyoF--WzF5YZf_zW_lc82_3CWRGLDBO1/view?usp=drive_link).
+
+#### 3. End-to-End Product Video Demonstration
+* Produced an HD video demonstration showcasing:
+  * **User Onboarding & IAM:** Student registration, profile curation, and GitHub handle linking.
+  * **Rich-Text Authoring:** Writing technical articles using TipTap editor with code syntax highlighting and LaTeX math formulas.
+  * **Asynchronous AI Enrichment:** Real-time generation of TL;DR summaries and dynamic tech tags via Python FastAPI LangChain service.
+  * **Live Developer Portfolio:** Real-time rendering of user articles, skill badges, and pinned GitHub repositories.
+  * **Moderator Control Center:** Administrative flagging, article visibility toggles, and user management audit logs.
+
+  * View our [Final Video](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link).
+
+#### 4. Containerization & Deployment Audit
+* Finalized `docker-compose.yml` for single-command environment provisioning.
+* Completed cross-platform validation ensuring backend, frontend, microservices, and databases launch seamlessly in production environments.
+
+---
