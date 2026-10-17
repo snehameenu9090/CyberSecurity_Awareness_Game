@@ -280,108 +280,41 @@ Features live queue monitoring, in-app full article reader view with DOMPurify X
 - Here is the complete project directory structure for **DevStream**:
 
 ```text
-Java_Project/
+Cybersecurity-Awareness-Game/
 │
-├── README.md                          # Project Documentation & Weekly Logs
+├── README.md
+├── pom.xml
+├── run.bat
+├── run.ps1
 │
-├── devstream-backend/                 # Spring Boot 3 Backend Service (Java 17, JPA, PostgreSQL/H2, JWT)
-│   ├── pom.xml                        # Maven Dependencies Configuration
-│   ├── mvnw / mvnw.cmd                # Maven Wrapper Scripts
-│   └── src/
-│       ├── main/
-│       │   ├── java/com/devstream/
-│       │   │   ├── DevStreamApplication.java
-│       │   │   │
-│       │   │   ├── aggregator/        # Portfolio Aggregator Module
-│       │   │   │   ├── controller/    # PortfolioController.java (Public portfolio lookup)
-│       │   │   │   ├── dto/           # DeveloperPortfolioResponse.java, GithubRepoResponse.java
-│       │   │   │   └── service/       # PortfolioAggregatorService.java, GithubApiClient.java
-│       │   │   │
-│       │   │   ├── content/           # Technical Articles & Tagging Module
-│       │   │   │   ├── controller/    # ArticleController.java, TagController.java
-│       │   │   │   ├── dto/           # ArticleCreateRequest, ArticleUpdateRequest, ArticleResponse
-│       │   │   │   ├── model/         # Article.java, Tag.java, ArticleStatus.java
-│       │   │   │   ├── repository/    # ArticleRepository.java, TagRepository.java
-│       │   │   │   ├── security/      # ArticleSecurity.java (Author authorization logic)
-│       │   │   │   └── service/       # ArticleService.java
-│       │   │   │
-│       │   │   ├── identity/          # Authentication & User Management Module
-│       │   │   │   ├── config/        # RoleSeeder.java (ROLE_STUDENT, ROLE_MODERATOR seeders)
-│       │   │   │   ├── controller/    # AuthController.java, ModerationController.java, UserProfileController.java
-│       │   │   │   ├── dto/           # AuthResponse, LoginRequest, RegisterRequest, UserResponse
-│       │   │   │   ├── model/         # User.java, Role.java, RoleName.java
-│       │   │   │   ├── repository/    # UserRepository.java, RoleRepository.java
-│       │   │   │   ├── security/      # SecurityConfig.java, JwtTokenProvider.java, JwtAuthenticationFilter.java, CustomUserDetailsService.java
-│       │   │   │   └── service/       # AuthService.java
-│       │   │   │
-│       │   │   └── media/             # Cloudinary Image & Media Upload Module
-│       │   │       ├── config/        # CloudinaryConfig.java
-│       │   │       ├── controller/    # MediaController.java
-│       │   │       ├── dto/           # ImageUploadResponse.java
-│       │   │       └── service/       # CloudinaryMediaService.java
-│       │   │
-│       │   └── resources/
-│       │       └── application.properties # Server Port, DB Connections, JWT & Cloudinary Keys
-│       │
-│       └── test/java/com/devstream/   # Automated Unit & Integration Tests
-│           ├── aggregator/PortfolioServiceTest.java
-│           ├── content/ArticleServiceTest.java
-│           └── identity/AuthServiceTest.java
+├── data/
+│   └── cyberaware.db
 │
-├── devstream-frontend/                # React Single-Page Application (Vite + Tailwind CSS + Lucide Icons)
-│   ├── package.json                   # Dependencies (Axios, Lucide-React, KaTeX, React Router)
-│   ├── vite.config.js                 # Vite Dev Server & Proxy Settings
-│   ├── tailwind.config.js             # Tailwind CSS Theme & Styling Config
-│   ├── index.html                     # HTML Template Entry Point
-│   ├── public/                        # Static Assets
-│   │   └── avatar.png                 # Default Avatar Placeholder
-│   └── src/
-│       ├── main.jsx                   # React DOM Root Injection
-│       ├── App.jsx                    # Application Router & Navigation Flow
-│       ├── index.css                  # Global Styles & Glassmorphism Utilities
-│       │
-│       ├── context/
-│       │   └── AuthContext.jsx        # Global Auth State (User, JWT Token, Roles)
-│       │
-│       ├── services/
-│       │   └── api.js                 # Axios Client (Auth, Article, Media, Tag, Portfolio APIs)
-│       │
-│       ├── hooks/
-│       │   ├── useArticles.js         # Custom Hook for Fetching & Filtering Articles
-│       │   └── usePortfolio.js        # Custom Hook for Portfolio State & GitHub API Sync
-│       │
-│       └── components/
-│           ├── Navbar.jsx             # Top Header Bar & Authentication Actions
-│           ├── AuthModal.jsx          # Login & Registration Form Modal
-│           ├── ArticleFeed.jsx        # Public Article Discovery & Search Feed
-│           ├── ArticleModal.jsx       # Quick Preview Modal for Technical Articles
-│           ├── ArticleViewPage.jsx    # Dedicated Article Detail Reader Page
-│           ├── MarkdownEditor.jsx     # Full-Featured Markdown & KaTeX Math Editor
-│           ├── PortfolioDashboard.jsx # Student Portfolio Showcase (Profile, Top 4 GitHub Repos, Skill Badges)
-│           ├── StudentDashboard.jsx   # Student Workspace & Article Management Dashboard
-│           ├── ModeratorDashboard.jsx # Moderation Queue & Content Oversight Panel
-│           ├── ProtectedRoute.jsx     # Role-Based Route Guard
-│           │
-│           ├── common/                # Shared UI Components
-│           │   ├── LoadingSpinner.jsx # Loading Spinner Widget
-│           │   └── SkeletonLoaders.jsx# Content Skeleton Loader Placeholders
-│           │
-│           ├── editor/                # Rich Text & Markdown Editor Subcomponents
-│           │   ├── AiAssistantSidebar.jsx
-│           │   ├── EditorHeader.jsx
-│           │   ├── EditorToolbar.jsx
-│           │   ├── ImageUploadModal.jsx
-│           │   └── MathModal.jsx
-│           │
-│           └── portfolio/             # Portfolio Display Cards
-│               ├── GitHubReposCard.jsx# Render GitHub Top Repositories
-│               ├── ProfileHeader.jsx  # Render User Header & Social Links
-│               └── UserArticlesList.jsx# Render Author-specific Articles
-│
-└── image/                             # Static Project Asset Storage
-    ├── avatar.png
-    ├── image.png
-    └── image copy.png
+└── src/
+    ├── main/
+    │   └── java/
+    │       └── com/
+    │           └── cyberaware/
+    │               ├── backend/
+    │               │   └── CyberAwareApp.java
+    │               │
+    │               ├── ui/
+    │               │   └── CyberAwareUI.java
+    │               │
+    │               ├── awareness/
+    │               │   └── AwarenessModule.java
+    │               │
+    │               ├── games/
+    │               │   └── GameModule.java
+    │               │
+    │               ├── quiz/
+    │               │   └── QuizModule.java
+    │               │
+    │               └── database/
+    │                   └── DatabaseManager.java
+    │
+    └── test/
+        └── java/
 ```
 
 In a full-stack, modular architecture (such as **DevStream**), dividing the platform into five end-to-end functional modules allows each team member to take complete ownership of their feature stack—covering user interface design, client-side state management, REST API controller development, database schema design, and third-party integrations.
