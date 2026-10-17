@@ -129,7 +129,7 @@ The system utilizes a Polyglot Persistence model, routing data to appropriate en
 ---
 ### UML Design
 ---
-* [Cybersecurity Awareness Game Class Diagram]![alt text](https://drive.google.com/file/d/10ZJuQh0whS549_OE8SygoA0y6InjgYlI/view?usp=drivesdk)
+* [Cybersecurity Awareness Game Class Diagram]!(https://drive.google.com/file/d/10ZJuQh0whS549_OE8SygoA0y6InjgYlI/view?usp=drivesdk)
 
 * [[Cybersecurity Awareness Game]![Project Screenshot](./image/Gemini_Generated_Image_4dvtt54dvtt54dvt.png)
 
