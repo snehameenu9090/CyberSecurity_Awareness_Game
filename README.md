@@ -118,3 +118,7 @@ mvn package
 - The backend follows because it processes actions and logic.
 - The database is the last layer because it saves data after the application flow is executed.
 - The app is designed for learning and awareness training, not for real device protection.
+
+## Week 03 UML Diagram
+
+[![Week 3 UML diagram](https://drive.google.com/uc?export=view&id=10ZJuQh0whS549_OE8SygoA0y6InjgYlI)](https://drive.google.com/file/d/10ZJuQh0whS549_OE8SygoA0y6InjgYlI/view?usp=drivesdk)

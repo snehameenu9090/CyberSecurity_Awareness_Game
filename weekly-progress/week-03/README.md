@@ -104,4 +104,4 @@ No dated achievements can be verified yet. Add only outcomes supported by the we
 
 ## UML Diagram
 
-[View the Week 3 UML diagram](https://drive.google.com/file/d/10ZJuQh0whS549_OE8SygoA0y6InjgYlI/view?usp=drivesdk)
+[![Week 3 UML diagram](https://drive.google.com/uc?export=view&id=10ZJuQh0whS549_OE8SygoA0y6InjgYlI)](https://drive.google.com/file/d/10ZJuQh0whS549_OE8SygoA0y6InjgYlI/view?usp=drivesdk)
