@@ -101,3 +101,7 @@ No dated achievements can be verified yet. Add only outcomes supported by the we
 - Weekly Progress Index: [All weeks](../../docs/weekly-progress/README.md)
 - Main README: [Project overview](../../README.md)
 - Next Week: [Week 04](../week-04/README.md)
+
+## UML Diagram
+
+[View the Week 3 UML diagram](https://drive.google.com/file/d/10ZJuQh0whS549_OE8SygoA0y6InjgYlI/view?usp=drivesdk)
