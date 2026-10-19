@@ -65,15 +65,6 @@ Network accounts, cloud synchronization, real malware scanning, and network-base
 
 ## week 2 
 
-
-## User Roles
-DevStream enforces strict Role-Based Access Control (RBAC) at the API layer utilizing Spring Security and stateless JSON Web Tokens (JWT).
-* **Student Author**: Can create and edit technical documentation, manage their live portfolio, and link their GitHub profile.
-* **Guest Reader**: Unauthenticated users permitted to view public portfolios and read open software documentation.
-* **Moderator**: Administrative users possessing elevated privileges to monitor content quality and enforce platform guidelines.
-
----
-
 ### SRS PDF
 
 You can access the [Project SRS Click](https://drive.google.com/file/d/1LixhIziyjHDVCXckHiU0Rzo9B0P1E16u/view?usp=drive_link)
@@ -82,47 +73,78 @@ You can access the [Project SRS Click](https://drive.google.com/file/d/1LixhIziy
 
 ## Architecture & Core Modules
 
-The DevStream architecture operates as a distributed system, with a Spring Boot Java backend acting as the central orchestrator, a React.js frontend, and an isolated Python AI microservice.
+The application follows the Model-View-Controller (MVC) architectural pattern to ensure clean separation between the graphical user interface, business logic, and data persistence layers.
+
+**Frontend / GUI Layer:** JavaFX / Java Swing (Custom UI components and layout management)
+
+**Core Logic / Backend:** Core Java (JDK 17+) utilizing Object-Oriented Programming (OOP) principles (Inheritance, Polymorphism, Encapsulation)
+
+**Database & Storage:** SQLite / MySQL managed via JDBC (Java Database Connectivity)
+
+**Build & Dependency Management:** Apache Maven / Gradle
 
 
 ### Functional Modules
-* **Module 1: Identity & Access Management (IAM)**
-  Validates user credentials and issues secure, time-bound JWTs. It manages user profile metadata, academic affiliations, and external repository URLs, acting as the system gatekeeper.
-* **Module 2: Core Content Engine**
-  Manages the drafting, version control, and storage of flexible, unstructured technical documentation. It uses boolean states to differentiate between "Draft" and "Published" content and maintains a nested version history for all edits.
-* **Module 3: Interactive Frontend (React.js)**
-  The client-side application featuring a specialized Markdown editor, role-based dashboards, and the final aggregated portfolio view.
-* **Module 4: AI Microservice (Python + LangChain)**
-  A standalone Python environment that processes natural language asynchronously. It uses an LLM to ingest articles and output a 2-3 sentence abstract, alongside assigning relevant technology domain tags.
-* **Module 5: Orchestration & Portfolio Aggregation**
-  The Spring Boot bridge that merges relational IAM data with document content via unified Data Transfer Objects (DTOs). This layer also communicates with the GitHub REST API to display pinned user repositories in real-time.
+* **Module 1: Authentication & Localization**
+   **Player Initialization:** Captures the user's username upon launching the desktop app.
+  **Language Selector:** Allows players to select their preferred language for localized educational content.
+* **Module 2: Awareness Hub**
+   Explains essential cybersecurity topics including Phishing, Strong Password Management, Social Engineering, and Malware Protection
+* **Module 3: Mini-Game Arena**
+     **Phishing Email Spotte:** Interactive challenge where users differentiate between legitimate and malicious emails.
+
+     **Password Strength Runner:** Dynamic game teaching secure password creation and vulnerability identification.
+
+     **Malware Defense Shield:** Strategy-based game illustrating firewall and antivirus principles against malicious scripts.
+
+     **Social Engineering Challenge:** Scenario-driven decision-making game protecting against pretexting and phone-based scams.
+* **Module 4: Quiz**
+ Evaluates player comprehension post-gameplay using multiple-choice and scenario-based questions.
+ Computes real-time scores and provides constructive feedback.
+* **Module 5:Data Persistence Layer**
+ Leverages JDBC to securely store player profiles, mini-game high scores, and quiz performance metrics into a local database.
 
 ---
 
-## Polyglot Persistence Database Strategy
+## Database & Persistence Strategy
 
-The system utilizes a Polyglot Persistence model, routing data to appropriate engines based on structural needs rather than forcing a single paradigm.
+The application utilizes a robust persistence architecture to handle structured relational data (player profiles, game scores, and quiz evaluations) alongside localized application content and configurations.
 
+### SQLite / MySQL (Relational Core)
+- **Usage**: Stores Player Profiles, Language Preferences, Mini-Game High Scores, and Quiz Assessment Performance.
+- **Structure**: Enforces strict relational schemas, foreign key constraints, and transactional ACID compliance.
+- **Integration**: Connects directly via **JDBC (Java Database Connectivity)** utilizing custom Data Access Objects (DAO pattern) or Lightweight ORM mappings.
+- **Keys**: Utilizes auto-incrementing integer Primary Keys (`player_id`, `score_id`, `result_id`) with foreign key constraints linking game/quiz records to player accounts.
 
-### PostgreSQL (Relational Core)
-* **Usage**: Stores User Accounts, Roles, Credentials, and API Keys.
-* **Structure**: Enforces strict schemas and referential integrity with ACID compliance.
-* **Integration**: Connects via Spring Data JPA and Hibernate using `@Entity` mapping.
-* **Keys**: Utilizes UUIDs for users to mitigate enumeration attacks.
-
-### MongoDB (Content Engine)
-* **Usage**: Stores Markdown Posts, AI Summaries, Revision Histories, View Counts, and Tags.
-* **Structure**: Highly flexible document structures containing nested objects and dynamic arrays.
-* **Integration**: Connects via Spring Data MongoDB using `@Document` mapping.
-* **Keys**: Uses native BSON ObjectIDs mapped back to the author's UUID.
+### Local JSON / Properties Configuration (Content & Localization Engine)
+- **Usage**: Stores localized UI strings, awareness module content, real-world case study examples, and question banks for the 4 mini-games and quizzes.
+- **Structure**: Flexible, human-readable structured files (`.json` or `.properties`) categorized by language (e.g., `en.json`, `hi.json`).
+- **Integration**: Loaded dynamically into memory at runtime based on the player's selected language preference.
 
 ---
 
-## Non-Functional Requirements
-* **Performance**: The Portfolio Aggregator must execute parallel asynchronous queries to PostgreSQL, MongoDB, and GitHub to resolve the complete portfolio payload in under 500ms.
-* **Security**: All passwords are hashed via BCrypt before database insertion. The platform implements global CORS policies and sanitizes all Markdown input to prevent Cross-Site Scripting (XSS).
-* **Fault Tolerance**: Utilizes Resilience4j for circuit breakers when communicating with external endpoints like GitHub and the AI Provider. If the LLM service times out, articles must save successfully without a summary rather than failing the transaction.
-* **Scalability**: The Python AI microservice is containerized separately from the Spring Boot application, allowing it to be scaled independently during high text-processing traffic.
+## Non-Functional Requirements (NFRs)
+
+* **Performance & Smooth GUI Rendering**: 
+  - JavaFX/Swing UI rendering must maintain **60 FPS** during gameplay.
+  - Database read/write operations (score updates, quiz submission) must execute in **under 100ms** on local storage without freezing the GUI Thread (handled via background Java Threads/`Task` API).
+
+* **Security**:
+  - Input sanitization on player names to prevent SQL Injection (SQLi) attacks by utilizing JDBC `PreparedStatement` everywhere.
+  - Secure local database file access permissions to prevent direct local score tampering.
+
+* **Fault Tolerance & Data Integrity**:
+  - If database connection fails, the game gracefully falls back to session-based temporary storage so gameplay is uninterrupted, displaying a warning message rather than crashing.
+  - Transaction management ensures game score insertion and quiz results complete fully or roll back cleanly.
+
+* **Usability & Localization**:
+  - Dynamic language switching without requiring application restarts.
+  - Responsive Java desktop layout adaptable to common screen resolutions (e.g., 1024x768, 1920x1080).
+
+* **Maintainability & Modular Design**:
+  - High cohesion and low coupling through **Model-View-Controller (MVC)** and **DAO Design Patterns**, allowing independent updates to mini-games or UI screens.
+
+
 
 ---
 ### Week 3
@@ -138,128 +160,79 @@ The system utilizes a Polyglot Persistence model, routing data to appropriate en
 
 ## Week 4: Database Design & UI Mock-ups
 
-### 1. Database Architecture & Polyglot Persistence Strategy
+### 1. Database Architecture & Data Storage Strategy
 
-DevStream operates on a **Polyglot Persistence Architecture** that routes data to PostgreSQL for transactional identity management and MongoDB Atlas for high-throughput, unstructured article documentation.
+The application utilizes a hybrid storage strategy consisting of a relational **SQLite database** (`cyberaware.db`) for tracking user state and assessment scores, combined with structured **JSON content stores** for localized educational content, game scenarios, and quiz question banks.
 
-#### A. PostgreSQL Relational Database Schema (Identity & Access Management)
+### A. SQLite Relational Database Schema (Data Persistence Layer)
 
-* **`users` Table**: Core identity and security credentials.
-  * `id` (`BIGSERIAL`, `PRIMARY KEY`)
-  * `username` (`VARCHAR(50)`, `UNIQUE`, `NOT NULL`)
-  * `email` (`VARCHAR(100)`, `UNIQUE`, `NOT NULL`)
-  * `password` (`VARCHAR(255)`, BCrypt Hash)
+* **`players` Table**: Manages player metadata, initial login setup, and localization settings.
+  * `player_id` (`INTEGER`, `PRIMARY KEY`, `AUTOINCREMENT`)
+  * `player_name` (`VARCHAR(50)`, `NOT NULL`)
+  * `language` (`VARCHAR(20)`, `DEFAULT 'English'`)
   * `created_at` (`TIMESTAMP`, `DEFAULT CURRENT_TIMESTAMP`)
 
-* **`roles` Table**: Role-Based Access Control definitions.
-  * `id` (`BIGSERIAL`, `PRIMARY KEY`)
-  * `name` (`VARCHAR(30)`, `UNIQUE`) — `ROLE_STUDENT_AUTHOR`, `ROLE_MODERATOR`, `ROLE_GUEST`
+* **`game_scores` Table**: Stores high scores and completion timestamps across all 4 mini-games.
+  * `score_id` (`INTEGER`, `PRIMARY KEY`, `AUTOINCREMENT`)
+  * `player_id` (`INTEGER`, `FOREIGN KEY` -> `players.player_id`)
+  * `game_type` (`VARCHAR(50)`, `NOT NULL`) — *Phishing, Password, Malware, Social Engineering*
+  * `score` (`INTEGER`, `NOT NULL`)
+  * `played_at` (`TIMESTAMP`, `DEFAULT CURRENT_TIMESTAMP`)
 
-* **`user_roles` Join Table**: M-to-N user-role mappings.
-  * `user_id` (`BIGINT`, `FOREIGN KEY` -> `users.id`)
-  * `role_id` (`BIGINT`, `FOREIGN KEY` -> `roles.id`)
-
-* **`developer_portfolios` Table**: Portfolio bio, social handles, and technical skills.
-  * `id` (`BIGSERIAL`, `PRIMARY KEY`)
-  * `user_id` (`BIGINT`, `FOREIGN KEY` -> `users.id`, `UNIQUE`)
-  * `bio` (`TEXT`)
-  * `github_username` (`VARCHAR(100)`)
-  * `avatar_url` (`VARCHAR(500)`)
-  * `location` (`VARCHAR(100)`)
-  * `skills_json` (`JSONB`, `DEFAULT '[]'`)
-
-#### B. MongoDB Atlas Document Database Schema (Content Engine)
-
-* **`articles` Collection**: Unstructured document storage for WYSIWYG HTML, TipTap JSON AST, Markdown, and analytics counters.
-  ```json
-  {
-    "_id": "ObjectId",
-    "title": "String",
-    "slug": "String (Unique Index)",
-    "contentHtml": "String (DOMPurify Sanitized)",
-    "contentJson": "String (TipTap JSON)",
-    "contentMarkdown": "String (Legacy Markdown)",
-    "summary": "String (LangChain AI Summary)",
-    "authorUsername": "String",
-    "tags": ["Array of Strings"],
-    "status": "PUBLISHED | HIDDEN | DRAFT",
-    "viewCount": 0,
-    "createdAt": "ISODate",
-    "updatedAt": "ISODate"
-  }
-  ```
-
-* **`tags` Collection**: Global taxonomy tags.
-  ```json
-  {
-    "_id": "ObjectId",
-    "name": "String (Unique Index)",
-    "description": "String",
-    "usageCount": 0
-  }
-  ```
+* **`quiz_results` Table**: Captures post-learning assessment metrics and final scores.
+  * `result_id` (`INTEGER`, `PRIMARY KEY`, `AUTOINCREMENT`)
+  * `player_id` (`INTEGER`, `FOREIGN KEY` -> `players.player_id`)
+  * `total_questions` (`INTEGER`, `NOT NULL`)
+  * `correct_answers` (`INTEGER`, `NOT NULL`)
+  * `percentage` (`FLOAT`, `NOT NULL`)
+  * `taken_at` (`TIMESTAMP`, `DEFAULT CURRENT_TIMESTAMP`)
 
 ---
 
-#### C. Entity-Relationship (ER) Diagram
+### B. Educational Content & Quiz Data Schema (JSON Storage)
 
-```mermaid
-erDiagram
-    USERS ||--o{ USER_ROLES : "has assigned"
-    ROLES ||--o{ USER_ROLES : "mapped to"
-    USERS ||--|| DEVELOPER_PORTFOLIOS : "owns"
+* **`awareness_modules.json`**: Stores theoretical topics and real-world case studies categorized by language.
+```json
+{
+  "language": "English",
+  "category": "Phishing Attacks",
+  "title": "Recognizing Malicious Emails",
+  "description": "Learn how attackers spoof domain names and manipulate urgency.",
+  "realWorldExample": "The 2020 Twitter Spear-Phishing Incident where administrative credentials were compromised."
+}
 
-    USERS {
-        bigint id PK
-        string username UK
-        string email UK
-        string password
+---
+
+### C. Entity-Relationship (ER) Diagram
+
+  erDiagram
+    PLAYERS ||--o{ GAME_SCORES : "records score"
+    PLAYERS ||--o{ QUIZ_RESULTS : "completes assessment"
+
+    PLAYERS {
+        int player_id PK
+        string player_name UK
+        string language
         timestamp created_at
     }
 
-    ROLES {
-        bigint id PK
-        string name UK
+    GAME_SCORES {
+        int score_id PK
+        int player_id FK
+        string game_type
+        int score
+        timestamp played_at
     }
 
-    USER_ROLES {
-        bigint user_id PK, FK
-        bigint role_id PK, FK
+    QUIZ_RESULTS {
+        int result_id PK
+        int player_id FK
+        int total_questions
+        int correct_answers
+        float percentage
+        timestamp taken_at
     }
 
-    DEVELOPER_PORTFOLIOS {
-        bigint id PK
-        bigint user_id FK, UK
-        text bio
-        string github_username
-        string avatar_url
-        string location
-        jsonb skills_json
-        timestamp updated_at
-    }
-
-    ARTICLES {
-        objectId _id PK
-        string title
-        string slug UK
-        string contentHtml
-        string contentJson
-        string contentMarkdown
-        string summary
-        string authorUsername FK
-        string_array tags
-        enum status "PUBLISHED|HIDDEN|DRAFT"
-        int viewCount
-        timestamp createdAt
-    }
-
-    TAGS {
-        objectId _id PK
-        string name UK
-        string description
-        int usageCount
-    }
-```
 
 ---
 
@@ -277,7 +250,7 @@ Features live queue monitoring, in-app full article reader view with DOMPurify X
 
 ## Week 5
 
-- Here is the complete project directory structure for **DevStream**:
+- Here is the complete project directory structure for **CyberSecurity Awareness Game**:
 
 ```text
 Cybersecurity-Awareness-Game/
@@ -317,9 +290,9 @@ Cybersecurity-Awareness-Game/
         └── java/
 ```
 
-In a full-stack, modular architecture (such as **DevStream**), dividing the platform into five end-to-end functional modules allows each team member to take complete ownership of their feature stack—covering user interface design, client-side state management, REST API controller development, database schema design, and third-party integrations.
+In a modular desktop application architecture, dividing the system into specialized functional modules allows each team member to take complete ownership of their feature stack—covering GUI design (JavaFX/Swing), event-driven application logic, local JDBC database schemas, dynamic content parsing, and game state mechanics.
 
-Below is a detailed breakdown of the **role, end-to-end responsibilities, technical challenges faced, and final accomplishments** for each team member.
+Below is a detailed breakdown of the **role, end-to-end responsibilities, technical challenges faced, and final accomplishments** for each team member across the platform.
 
 ---
 
