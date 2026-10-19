@@ -296,115 +296,106 @@ Below is a detailed breakdown of the **role, end-to-end responsibilities, techni
 
 ---
 
-## 1. Member 1: Home Page & Content Discovery Engine
+## 1. Member 1: Home Page & Central Platform Dashboard
 
 ### Role & Scope of Work
-Member 1 owned the entry point of the application, responsible for how users browse, search, and discover technical articles across the platform.
-
-* **Frontend (User Interface & State)**: Built the landing page layout, responsive article cards, dynamic search bar, tag filtering system, sorting controls (e.g., *Latest*, *Trending*, *Most Viewed*), and infinite scrolling/pagination.
-* **Backend (API Logic)**: Designed REST endpoints for fetching public feed data, executing text queries, filtering posts by multi-tag criteria, and handling pagination parameters.
-* **Database & Caching**: Engineered MongoDB index strategies on fields like creation date and view count to ensure fast read performance. Implemented server-side caching (e.g., Redis) for high-frequency home page feeds.
+Member 1 owned the primary landing page and central application control center. This module acts as the unified home hub where users browse, launch, and navigate seamlessly into all three core platform sections: the **Awareness Hub**, the **Mini-Game Arena**, and the **Quiz & Assessment Engine**.
+* **Frontend (User Interface & State)**: Designed the main Home Dashboard layout using Java GUI components. Created quick-access cards and navigation action panels for the Awareness Hub, Games Arena (all 4 mini-games), and Quiz Section, complete with player profile summaries and live language selection UI.
+- **Backend (Core Orchestration Logic)**: Implemented global routing controllers and event listeners that handle screen transitions, view switching, and state initialization when launching different modules from the home screen.
+- **Data & Resource Integration**: Integrated background resource parsers and state trackers to ensure player progress, dynamic localized text, and dashboard widgets load instantly without UI blocking.
 
 ### Problems & Challenges Faced
-1. **Read Performance & Query Latency**: Fetching hundreds of detailed article documents along with author profile metadata created heavy database read pressure.
-2. **Draft & Hidden Content Security**: Needed to guarantee that unpublished drafts or moderator-hidden posts were strictly filtered out of search results and public feeds without causing expensive runtime checks.
-3. **High-Frequency View Counter Operations**: Incrementing article view counts every time a user clicked a home feed item risk created database write bottlenecks.
-
+1. **Unified Dashboard Rendering Latency**: Loading and rendering status data for the Awareness content, mini-games, and quiz modules on a single Home Dashboard screen caused initial rendering delays. Resolved by executing asynchronous background data loading.
+2. **Smooth Screen Routing & State Management**: Transitioning between the Home Page, active mini-games, and quiz screens without losing active session data or accumulating memory leaks. Resolved by establishing a centralized UI Controller pattern.
+3. **Dynamic Localization Across Home Modules**: Ensuring that changing the language on the Home Page instantly updated text across all three section previews (Awareness, Games, and Quiz) without requiring an application restart.
 ### What They Completed
-* A high-performance, fully responsive **Home Page & Search Portal**.
-* Optimized paginated APIs capable of searching articles by keywords, topics, and authors.
-* Cached trending feeds and indexing strategies that reduced feed load times under heavy read volume.
-
+- A high-performance, fully responsive **Central Home Dashboard** connecting Awareness, Games, and Quiz modules in one place.
+- Optimized UI routing engine enabling single-click navigation and clean view transitions across the entire desktop application.
+- Dynamic session state loader and multi-language support engine for the home interface.
 ---
 
 ## Week 6 
 
-## 2. Member 2: Editor & Article Writing Engine
-
+## 2. Member 2:Front Page, Player Authentication & Localization
 ### Role & Scope of Work
-Member 2 focused on the core content creation suite, providing developers with a rich environment to draft, format, and publish technical documentation and tutorials.
-
-* **Frontend (User Interface & State)**: Developed the split-screen WYSIWYG/Markdown editor interface, inline syntax highlighting for code snippets, image upload drag-and-drop zones, live preview rendering, and auto-save indicators.
-* **Backend (API Logic)**: Created CRUD REST controllers for drafting, updating, publishing, and deleting articles. Implemented HTML parsing, tag association, and version history tracking.
-* **Database & Media Storage**: Designed the document collection schema for articles (storing raw content, rendered HTML, AST trees, and status flags) and integrated cloud/local storage APIs for embedded screenshot uploads.
+Member 2 owned the application's entry Front Page (Welcome Screen), handling player onboarding, username input validation, profile creation, and preferred language configuration (Localization engine).
+* **Frontend (User Interface & State)**: Built the primary Front Page screen featuring input fields for Player Name, interactive dropdown selectors for language choice (e.g., English, Hindi), and entry action buttons to start the session.
+* **Core Session Logic**: Implemented player input sanitization, unique username verification, and player profile initialization routines before granting access to the Home Dashboard.
+* **Localization Engine**:Built the core dynamic internationalization (i18n) loader that binds selected language keys to UI components across the entire application.
 
 ### Problems & Challenges Faced
-1. **Cross-Site Scripting (XSS) Vulnerabilities**: Allowing writers to embed custom HTML and code snippets opened risks for malicious scripts. Solved by implementing strict server-side and client-side HTML sanitization.
-2. **Auto-Save Race Conditions**: Background auto-saving triggered frequent network requests, occasionally causing network responses to arrive out of order and overwrite newer drafts with older state. Solved by debouncing auto-saves and utilizing document version locking.
-3. **Unsaved State Data Loss**: Handling browser reloads or accidental tab closures while writing long articles required local draft syncing and dirty-state warning prompts.
+1. **Player Input Validation**: Preventing blank, duplicate, or special-character player names from corrupting local database records during entry.
+2. **Real-time Language Switching**: Ensuring that selecting a language on the Front Page instantly re-renders all UI text labels across subsequent screens without requiring an application restart.
+3. **Session Handoff to Home Page**: Smoothly passing the created player session object from the Front Page to the main Home Dashboard without data loss.
 
 ### What They Completed
-* A developer-friendly **Markdown & Rich-Text Editor** equipped with live preview rendering and image uploads.
-* Automatic background draft-saving pipeline with version controls.
-* Complete article publishing lifecycle management (Draft $\rightarrow$ Published $\rightarrow$ Archived) backed by sanitized database persistence.
+*A user-friendly Front Page & Player Onboarding Portal for name input and language selection.
+
+* Robust Localization Engine supporting multi-language dynamic UI rendering.
+
+* Session initialization pipeline linking player profile data directly to the application controller.
 
 ---
 
-## 3. Member 3: AI Functionality (Summarizer & Tag Generator)
+## 3. Member 3: Awareness Hub & Content Engine
 
 ### Role & Scope of Work
-Member 3 focused on intelligent content augmentation, creating an isolated microservice that automatically analyzes technical articles to generate concise abstracts and suggest relevant tags.
-
-* **Microservice & LLM Architecture**: Built a dedicated Python-based microservice using AI orchestrators (such as LangChain/LLMs) to ingest raw text and produce 2–3 sentence "TL;DR" summaries and domain tags (e.g., *Java*, *Spring Boot*, *Docker*).
-* **Backend (Java-to-Python Integration Bridge)**: Constructed communication bridges (REST/gRPC APIs) between the main application backend and the AI microservice, managing background worker queues so main post saving is never blocked.
-* **Database & UI Integration**: Delivered summary and tag payloads back to the database engine and designed front-end suggestion prompts for authors during the writing workflow.
-
+Member 3 owned the educational learning modules and real-world attack case study hub
+* **Frontend (UI & Layout)**: Designed rich text view panels, concept navigation sidebars, and topic selection cards for cybersecurity threat categories (Phishing, Malware, Password Security, Social Engineering).
+* **Backend**: Engineered JSON parsing controllers to asynchronously load structured educational modules, case study datasets, and threat categories based on the user's selected language.
+* **Database & UI Integration**:Built in-memory data structures and local file stream handlers (awareness_modules.json) to cache educational content for zero-latency reading.
 ### Problems & Challenges Faced
-1. **Inference Latency & Service Timeouts**: AI model generation takes several seconds. Blocking HTTP calls during article saving resulted in poor user experience. Solved by making AI generation asynchronous and non-blocking.
-2. **Prompt Noise & Markdown Interference**: Passing raw code blocks and syntax markdown into language models caused inaccurate summaries or hallucinated tags. Built a text-cleaning pipeline to strip code noise before model inference.
-3. **Fault Isolation**: Ensuring that if the AI microservice crashes or runs out of API credits, authors can still draft and publish articles without system failures.
+1. **Thread Freezing During Parsing**: Executing file I/O operations directly on the main UI thread caused temporary app freezes. Resolved using asynchronous background tasks.
+2. **Missing Localization Keys**: Handling fallback strategies when a specific case study isn't available in a chosen regional language.
+
 
 ### What They Completed
-* An independent **AI Microservice** for text summarization and metadata generation.
-* Asynchronous background job pipeline between the primary backend and the AI microservice with failure fallback handling.
-* Automated **TL;DR Abstract Generator** and **Smart Technical Tag Engine** embedded directly into the content management pipeline.
+* Interactive Awareness Hub Portal loaded with cybersecurity topics and historical attack case studies.
 
+* Asynchronous JSON parser supporting dynamic language feeds
 ---
 
 ## Week 7 
 
-## 4. Member 4: User Profile & Live Portfolio Aggregator
+## 4. Member 4: Mini-Game Arena
 
 ### Role & Scope of Work
-Member 4 was responsible for turning user accounts into professional "Live Portfolios," merging platform-authored articles with external developer metrics.
+Member 4 owned the core engagement hub containing all 4 interactive cybersecurity mini-games.
 
-* **Frontend (User Interface & State)**: Designed the developer profile dashboard, bio management UI, social link settings, skill badge manager, showcase article listings, and pinned project cards.
-* **Backend (API Logic)**: Developed identity profile management endpoints and built an aggregation engine that executes parallel calls to fetch user identity, MongoDB author statistics, and external GitHub REST API data (such as pinned repos and star counts).
-* **Database & External APIs**: Designed relational database schemas for user identities and profile details, while configuring resilience patterns (circuit breakers and retry handlers) for external API communication.
+* **Frontend (User Interface & State)**: Created custom graphical play areas and interactive elements for Phishing Email Spotter, Password Strength Runner, Malware Defense Shield, and Social Engineering Challenge.
+* **Backend (API Logic)**: Implemented real-time game loops, countdown timer threads, score multiplier algorithms, and interactive click event handlers.
+* **Database & External APIs**: Managed score transaction payload generation, passing completed mini-game points and gameplay timestamps to the persistence layer for database logging (game_scores table).
 
 ### Problems & Challenges Faced
-1. **Third-Party API Rate Limits & Outages**: Relying on external services like GitHub meant rate limiting (e.g., HTTP 429) or third-party downtime could slow down or break profile page loads. Solved by implementing fallback caching and resilience circuit breakers.
-2. **Cross-Database Data Aggregation Latency**: Combining relational SQL user metadata with non-relational document database article counts in a single profile request created performance bottlenecks. Solved by utilizing asynchronous parallel backend querying.
+1. **Timer Thread Synchronization:**:Keeping UI timer counts accurate without causing frame drops or UI freezing.
+2. **Clean Game Reset**: Ensuring game states and timers reset completely when a player chooses to replay a mini-game.
 3. **Data Consistency**: Ensuring profile updates (such as username or avatar changes) instantly updated across all published articles without requiring full-database re-indexing.
 
 ### What They Completed
-* An aggregated **Developer Portfolio Page** displaying user bios, skills, and publication history.
-* Real-time **GitHub Integration** featuring pinned repositories and contribution highlights.
-* Resilient backend aggregator endpoints providing unified profile payloads under strict SLA limits.
+* Action-oriented 4 Mini-Games Arena with live scoring and real-time timer systems.
 
+* Game-to-Database score transmission handlers.
 ---
 
 ## Week 8
 
-## 5. Member 5: Moderator Dashboard & Platform Governance
-
+## 5. Member 5: Quiz Engine & Data Persistence Layer
 ### Role & Scope of Work
-Member 5 built the administrative control center, ensuring platform compliance, user access management, and content quality control.
+Member 5 owned post-gameplay knowledge evaluation and local SQLite database persistence.
+* **Frontend (User Interface & State)**: Built multiple-choice question (MCQ) display containers, option selection buttons, instant feedback indicators, and final percentage summary scorecards.
+* **Backend (API Logic)**: Developed randomized question shufflers, automated option-grading algorithms, accuracy percentage calculators, and JSON question loaders (quiz_questions.json).
+* **Database & Governance**: Designed and implemented the complete SQLite Database Architecture (cyberaware.db). Wrote JDBC Data Access Objects (DAO) using PreparedStatements for secure CRUD operations on players, game_scores, and quiz_results tables.
 
-* **Frontend (User Interface & State)**: Built an administrative management portal with reported content queues, user management tables, article review panels, role-assignment toggles, and system metrics widgets.
-* **Backend (API Logic)**: Enforced strict Role-Based Access Control (RBAC) security filters (ensuring only verified administrative tokens can execute privileged actions), developed moderation management APIs, and built audit logging services.
-* **Database & Governance**: Designed database tables to record user roles, security mappings, flag reports, and moderation action history logs.
-
+  
 ### Problems & Challenges Faced
-1. **Privilege Escalation Risks**: Ensuring security filters prevented regular users from forging tokens or tricking parameters to access admin controllers.
-2. **Bulk Action Transaction Safety**: Moderating or hiding multiple spam posts simultaneously without locking database collections or breaking search indexes.
+1. **Database Connection Leaks**: Preventing JDBC memory leaks by enforcing auto-closing connection pools and try-with-resources blocks.
+2. **Question Deduplication**: Ensuring question randomization logic never served duplicate questions during a single quiz attempt.
 3. **Real-Time UI State Sync**: Ensuring that when content is flagged or hidden by a moderator, the change immediately reflects on the live public feeds without leaving broken or dead links for readers.
 
 ### What They Completed
-* A complete **Moderation & Administrative Portal** for community governance.
-* **Role-Based Access Control (RBAC)** security configuration for endpoints and UI views.
-* Content flagging workflow, user suspend/promote features, and immutable admin action audit logs.
+* Comprehensive Quiz & Assessment Engine with automated evaluation.
 
+* Production-ready SQLite Database Schemas & JDBC Persistence Handler
 ---
 
 
