@@ -420,132 +420,104 @@ In this phase, each team member takes on an **Integration & Testing Lead role** 
 
 ---
 
-## 1. Member 1: Home Page & Search Engine Integration Lead
 
-### Integration & Testing Role
-**Feed Synchronization, Search Contract, & High-Traffic Load Testing Lead.**
+## **System Integration & End-to-End (E2E) Testing**
 
-### Work & Scope
-* **Cross-Module Feed Integration**: Integrated the Home Page feed with Member 2's published articles, Member 4's moderation status flags (ensuring hidden posts instantly disappear), and Member 5's AI-generated summaries and tags.
-* **API Contract Testing**: Verified that the JSON response schemas sent by the Java backend match the feed state expected by the React frontend across all device viewports.
-* **Performance & Load Testing**: Conducted simulated stress testing (using tools like JMeter or K6) to measure search latency, pagination speeds, and server resource usage under hundreds of concurrent virtual readers.
+When moving from individual module development to **System Integration & End-to-End (E2E) Testing**, the focus shifts from isolated unit testing to verifying **cross-module data flows, inter-service contracts, security enforcement, performance SLAs, and system resilience**. 
 
-### Problems Faced During Integration
-1. **Stale Cache & Search Index Lag**: Newly published articles from Member 2's Editor took several minutes to appear in Home search results due to outdated cache invalidation rules.
-2. **Null Pointer Rendering Crashes**: When rendering article cards that were still undergoing AI summary generation by Member 5, the frontend feed crashed due to missing or `null` summary fields.
-3. **Moderation Status Leakage**: Articles flagged or hidden by Member 4 in the Moderator Dashboard were still appearing in search results because search indexes were not refreshing upon moderation state changes.
-
-### What They Completed
-* **Unified Search & Feed Integration Test Suite** validating search filters, multi-tag queries, and pagination.
-* **Automated Cache Invalidation Hooks** connecting Editor publishing and Moderator actions directly to home feed cache clears.
-* **Load & Performance Benchmark Report** proving the Home feed responds within target SLAs (<200ms) under heavy concurrent read traffic.
+In this phase, each team member takes on an **Integration & Testing Lead role** for their respective domain, working together to ensure all five modules function as a unified, production-ready system.
 
 ---
 
-## 2. Member 2: Editor & Content Pipeline Integration Lead
+### **A. Domain-Specific Integration & Testing Lead Breakdown**
 
-### Integration & Testing Role
-**Write Pipeline, End-to-End Content Lifecycle, & Security Audit Lead.**
+#### **Member 1: System Integration Lead – Central Navigation & State Flow**
 
-### Work & Scope
-* **Pipeline Orchestration**: Connected the Editor’s publish action to automatically trigger Member 5's AI summary generation queue, update Member 1's Home feed indexes, and increment Member 3's author statistics.
-* **Security & Penetration Testing**: Executed security tests targeting Cross-Site Scripting (XSS), script injection through code blocks, and unauthorized edit/delete payload manipulations.
-* **Data Consistency Verification**: Ensured complex documents containing custom Markdown, syntax-highlighted code blocks, and inline images persist cleanly without data truncation.
+* **Primary Scope**: E2E User Journey & Screen State Synchronization.
+  
+* **Integration Focus**: Verifies the seamless handoff between the Home Dashboard, Awareness Hub, Mini-Game Arena, and Quiz Section.
 
-### Problems Faced During Integration
-1. **Asynchronous Publishing Race Conditions**: When authors published an article and immediately navigated to their User Profile, the new article occasionally resulted in a `404 Not Found` error because background database writes were still pending.
-2. **WYSIWYG/AST Payload Schema Discrepancies**: Data format differences between the React rich-text editor output and the Java backend entity model caused broken formatting when restoring saved drafts.
-3. **Sanitization Edge-Cases**: Strict XSS security filters inadvertently stripped valid developer code syntax (like HTML tags inside tutorial code blocks) during cross-module rendering.
+* **Key Testing Responsibilities**:
+  * Conducts E2E navigation testing to ensure zero memory leaks during rapid switching between modules.
+  * Validates that player profile metadata and session headers update across all views in real-time.
+  * Verifies non-blocking UI rendering and background thread execution during heavy view transitions.
 
-### What They Completed
-* **Automated End-to-End Content Lifecycle Test Suite** covering: *Draft Creation $\rightarrow$ Auto-Save $\rightarrow$ AI Trigger $\rightarrow$ Publish $\rightarrow$ Profile Update $\rightarrow$ Home Feed Rendering*.
-* **Security & Input Sanitization Audit** confirming immunity against XSS and unauthorized content modification.
-* **Draft Conflict & Network Interruption Recovery Tests** verifying draft state safety during network drops.
+#### **Member 2: Security & Session Integration Lead – Authentication & Localization**
 
----
+* **Primary Scope**: Player Onboarding, Input Security, & Dynamic i18n
+  
+* **Integration Focus**: Validates the contract between the Front Page (Welcome Screen) and downstream modules.
+  
+* **Key Testing Responsibilities**:
+  * Executes input sanitization and boundary testing to prevent SQL injection or corrupted player records.
+  * Conducts dynamic localization tests to verify that changing language keys on the Front Page propagates correctly across all awareness text, quiz banks, and mini-game UIs.
+  * Tests edge cases like empty username fields, duplicated player profiles, and abnormal app closures during registration.
 
-## 3. Member 3: User Profile & Live Portfolio Integration Lead
+#### **Member 3: Data Pipeline Lead – Educational Content & Case Studies**
 
-### Integration & Testing Role
-**Polyglot Aggregation, Cross-Database Sync, & Fault-Tolerance Lead.**
+* **Primary Scope**: Asynchronous Content Parsing & Resource Management.
+  
+* **Integration Focus**: Ensures dynamic JSON resource streams load seamlessly across localized feeds.
+  
+* **Key Testing Responsibilities**:
+  * Performs schema validation on `awareness_modules.json` to prevent null-pointer exceptions during parsing.
+  * Verifies asynchronous file loading under simulated low-memory conditions to guarantee zero main-thread UI freezing.
+  * Conducts fallback testing to ensure default English strings render if regional language keys are missing.
 
-### Work & Scope
-* **Cross-Database Integration**: Integrated the User Profile aggregator service across PostgreSQL identity tables (Member 4 RBAC & User Security), MongoDB article repositories (Member 1 & 2), and third-party GitHub REST APIs.
-* **User Data Synchronization Testing**: Tested platform-wide user metadata updates, ensuring that when an author updates their username or avatar, it updates consistently across all published articles, comments, and profile views.
-* **Resilience & Fault-Tolerance Testing**: Simulated external API outages (e.g., GitHub API returning HTTP 429 Rate Exceeded or 503 Service Unavailable) to verify system grace under failure.
+#### **Member 4: Runtime Performance Lead – Mini-Game Arena Engine**
 
-### Problems Faced During Integration
-1. **Cascading API Latency**: Fetching profile data across SQL, MongoDB, and GitHub in sequence resulted in unacceptable integration test load times (>2 seconds).
-2. **External Dependency Fragility**: Unhandled GitHub API rate limits during full system testing caused entire profile pages to throw HTTP 500 errors instead of cleanly displaying the user's local articles and bio.
-3. **Orphaned Document References**: Deleting a user in Member 4's Moderator Dashboard left orphaned author IDs and dead profile links in MongoDB article collections.
+* **Primary Scope**: Gameplay Loops, Multi-threading, & Live Score Contracts
+  
+* **Integration Focus**: Verifies real-time event loops and payload delivery to the database manager.
+  
+* **Key Testing Responsibilities**:
+  * Conducts thread-synchronization tests on countdown timers across all 4 mini-games (*Phishing Spotter*, *Password Runner*, *Malware Shield*, *Social Engineering*).
+  * Validates score calculation accuracy, timer reset routines, and clean thread termination upon game completion.
+  * Executes stress tests on high-frequency UI repaints to ensure frame rate stability.
 
-### What They Completed
-* **Cross-Database Integration Test Suite** verifying parallel fetching across PostgreSQL and MongoDB.
-* **Resilience4j Circuit Breaker Test Suite** proving that profiles load gracefully using fallback mock data when third-party services fail.
-* **User Identity Sync & Cascading Deletion Verification Suite** ensuring clean data integrity upon account updates or removals.
+#### **Member 5: Persistence & Governance Lead – Quiz Engine & Database Integration**
 
----
-
-## 4. Member 4: Moderator Dashboard & System Governance Integration Lead
-
-### Integration & Testing Role
-**Global Security, RBAC Authorization, & System Governance Lead.**
-
-### Work & Scope
-* **Global Access Control Enforcement**: Integrated Moderator Dashboard security policies across all application routes, endpoints, and microservices to enforce Role-Based Access Control (RBAC).
-* **Authorization Penetration Testing**: Attempted privilege escalation scenarios (e.g., standard Student Authors forging tokens to access admin endpoints, or Guest Readers attempting write APIs).
-* **Real-Time Moderation Propagation Testing**: Verified that when a moderator hides a post or suspends an author, active user sessions, home feeds, editor access, and profile showcases immediately reflect the restriction.
-
-### Problems Faced During Integration
-1. **Stateless JWT Revocation Delays**: Suspended users could still perform editor writes or profile updates until their stateless JWT token expired. Required integrating a token blacklist validation check on sensitive write actions.
-2. **Unhandled Null References on Client UI**: When a moderator hid a post that another user was currently reading, the reader’s browser threw unhandled JavaScript exceptions upon attempting to interact with the hidden post.
-3. **Audit Log Data Gaps**: Admin audit trails were missing target metadata when moderation actions coincided with asynchronous background processing from the AI service.
-
-### What They Completed
-* **Global Security & Authorization Matrix Test Suite** verifying access boundaries across all roles (*Guest*, *Student Author*, *Moderator*).
-* **End-to-End Governance Pipeline Test Suite** covering: *Content Flagging $\rightarrow$ Mod Queue Review $\rightarrow$ Article Hide $\rightarrow$ Token Invalidation $\rightarrow$ Global Feed Eviction*.
-* **Admin Audit Trail Suite** ensuring every administrative action is immutably logged with accurate metadata.
+* **Primary Scope**: Database ACID Compliance, Prepared Statements, & Automated Assessment
+  
+* **Integration Focus**: Ensures integrity across player stats, mini-game score logs, and quiz results.
+  
+* **Key Testing Responsibilities**:
+  * Conducts transactional integrity testing on the SQLite database (`cyberaware.db`) using JDBC PreparedStatements.
+  * Validates quiz assessment algorithms (random option shuffling, percentage calculations, deduplication).
+  * Performs stress testing on database connection pools to prevent memory/resource leaks using `try-with-resources`.
 
 ---
 
-## 5. Member 5: AI Microservice & Inter-Service Integration Lead
+### **B. Cross-Module Integration Verification Matrix**
 
-### Integration & Testing Role
-**Inter-Service Communication, Microservice Orchestration, & Async Reliability Lead.**
+| Integration Pipeline | Source Module | Destination Module | Verification & Performance SLA |
+| :--- | :--- | :--- | :--- |
+| **Session Handshake** | **Module 2** (Front Page) | **Module 1** (Home Page) | Player profile & selected language payload passed in **< 100ms**. |
+| **Localized Content Feed** | **Module 2** (Localization) | **Module 3** (Awareness Hub) | Correct language JSON parsed and cached in-memory without UI thread freeze. |
+| **Game Score Dispatch** | **Module 4** (Game Arena) | **Module 5** (SQLite Database) | Final points & timestamps saved via JDBC with zero data tampering (**< 150ms** write speed). |
+| **Assessment Verification** | **Module 3** (Awareness) | **Module 5** (Quiz Engine) | Questions correctly mapped to threat categories with **100% deduplication**. |
 
-### Work & Scope
-* **Inter-Service REST/gRPC Integration**: Connected the isolated Python AI microservice with the central Java Spring Boot backend, establishing communication contracts and serialization rules.
-* **Microservice Contract Testing**: Validated request/response payload structures, timeout policies, fallback triggers, and retry handlers between Java and Python environments.
-* **Chaos & Queue Stress Testing**: Tested batch article processing queues under high volume to evaluate Python container memory management, thread pool limits, and backend non-blocking behavior.
-
-### Problems Faced During Integration
-1. **Data Serialization Mismatches**: Type mismatches between Python data models and Java Data Transfer Objects (DTOs)—such as tag lists being formatted as comma-separated strings instead of JSON arrays—caused inter-service parsing errors.
-2. **Microservice Timeouts & Resource Spikes**: Heavy long-form technical posts caused the Python LLM service to exceed standard HTTP client timeout limits, causing the Java backend to drop connection sockets.
-3. **Silent Queue Deadlocks**: If the AI microservice crashed mid-processing, the Java backend occasionally remained stuck in a `PENDING_SUMMARY` state indefinitely.
-
-### What They Completed
-* **Inter-Service Contract Test Suite** guaranteeing payload alignment between Python and Java services.
-* **Non-Blocking Asynchronous Resilience Suite** proving that platform articles publish successfully 100% of the time, even if the AI microservice is offline or timing out.
-* **AI Processing Queue Stress & Recovery Test Suite** validating system performance under continuous bulk processing load.
 
 ---
 
-## Overall System Integration Summary
+## Overall System Integration Summary 
 
-During the final **Full System Acceptance Testing**, all 5 team members executed unified end-to-end user journeys:
+During the final Full System Acceptance Testing, all 5 team members executed unified end-to-end user journeys:
+
+
 
 ```
-[Author Writes Article (Mem 2)] ──> [Triggers Async AI Tags/Summary (Mem 5)]
-                                             │
-                                             ▼
-[Article Appears on Home Feed (Mem 1)] <── [Database Persistence (Polyglot)]
-                                             │
-                                             ▼
-[Visible on User Portfolio (Mem 3)] <─── [Subject to Mod Controls (Mem 4)]
+[Player Enters Name & Language (Mem 2)] ──> [Session Handshake to Home Dashboard (Mem 1)]
+                                                      │
+                                                      ▼
+[Completes Quiz / Mini-Games (Mem 4)] <─── [Explores Awareness Hub (Mem 3)]
+                                                      │
+                                                      ▼
+[Scores & Results Saved (Mem 5)] <──────── [Local SQLite Persistence & Automated Grading]
+
 ```
 
-By dividing integration testing by architectural responsibility, the team successfully transformed five independently built modules into a secure, high-performance, and resilient developer platform.
-
+By dividing integration testing by architectural responsibility, the team successfully transformed five independently built modules into a secure, high-performance, and resilient desktop cybersecurity learning platform.
 ---
 
 ## Week 10: Final System Evaluation, Deliverables & Project Submission
@@ -567,36 +539,59 @@ During **Week 10**, the DevStream engineering team completed the final system ev
 ### Key Accomplishments & Week 10 Milestones
 
 #### 1. Final Project Report & Technical Documentation
-* Compiled the comprehensive **Software Requirements Specification (SRS)** and **Technical Architecture Document** covering:
-  * Hybrid **Feature-Driven Monorepo** microservice design.
-  * **Polyglot Persistence Strategy** (PostgreSQL relational engine + MongoDB Atlas document engine).
-  * Stateless **JWT Authentication** and strict **Role-Based Access Control (RBAC)** across `ROLE_GUEST`, `ROLE_STUDENT_AUTHOR`, and `ROLE_MODERATOR`.
-  * **Dual-Layer XSS Sanitization** using client-side `DOMPurify` and backend HTML encoding.
+
+- Compiled the comprehensive **Software Requirements Specification (SRS)** and **Technical Architecture Document** covering:
+  * Modular **Java Desktop Architecture** utilizing Swing/JavaFX components and encapsulated multi-thread controllers.
+  * **Local Polyglot Storage Strategy** (SQLite relational engine for player data & mini-game scores + structured JSON storage for educational awareness modules and quiz banks).
+  * **Session-Based Onboarding & Localization Engine** supporting dynamic multi-language preferences across all active screens.
+  * **Input Sanitization & Data Integrity** ensuring zero-latency asynchronous resource loading and secure JDBC PreparedStatement transactions.
 
   - View our [Final Project Report](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link).
-
+    
 #### 2. Final Evaluation Slide Deck (PPT)
-* Prepared a structured 20-slide presentation deck covering:
-  * **Problem Statement & Scope:** Addressing the gap in traditional CMS platforms for software engineering students.
-  * **Architecture & Polyglot Persistence Topology:** Visualizing Spring Boot, Python FastAPI, PostgreSQL, and MongoDB Atlas.
-  * **AI Microservice Workflow:** Non-blocking `@Async` execution for automated LLM summarization and tech tagging.
-  * **Live Portfolio Aggregation:** Parallel fetching across PostgreSQL, MongoDB, and GitHub REST API ($T_{\text{aggregation}} < 500\text{ ms}$).
-  * **Quality Assurance & Testing:** Code coverage reports, E2E integration test results, and Resilience4j circuit breaker performance.
 
-  * View our [PPT of Project Report](https://drive.google.com/file/d/1vyoF--WzF5YZf_zW_lc82_3CWRGLDBO1/view?usp=drive_link).
+- Prepared a structured 20-slide presentation deck covering:
+  * **Problem Statement & Scope:** Addressing the gap in traditional learning methods by providing an interactive, gamified desktop application for cybersecurity awareness.
+  * **Architecture & Local Storage Topology:** Visualizing the 5-member modular Java desktop architecture, SQLite relational engine (`cyberaware.db`), and localized JSON content stores.
+  * **Core Module Workflows:** Asynchronous JSON parsing for the Awareness Hub, real-time timer loops for the 4 Mini-Games, and automated grading for the Quiz Engine.
+  * **Performance & Data Optimization:** Local JDBC PreparedStatements, zero-latency in-memory content caching, and efficient background thread management ($T_{\text{load}} < 100\text{ ms}$).
+  * **Quality Assurance & Testing:** Cross-module E2E integration test results, thread synchronization verification, and local data integrity checks.
+
+  - View our [PPT of Project Report](https://drive.google.com/file/d/1vyoF--WzF5YZf_zW_lc82_3CWRGLDBO1/view?usp=drive_link).
 
 #### 3. End-to-End Product Video Demonstration
-* Produced an HD video demonstration showcasing:
-  * **User Onboarding & IAM:** Student registration, profile curation, and GitHub handle linking.
-  * **Rich-Text Authoring:** Writing technical articles using TipTap editor with code syntax highlighting and LaTeX math formulas.
-  * **Asynchronous AI Enrichment:** Real-time generation of TL;DR summaries and dynamic tech tags via Python FastAPI LangChain service.
-  * **Live Developer Portfolio:** Real-time rendering of user articles, skill badges, and pinned GitHub repositories.
-  * **Moderator Control Center:** Administrative flagging, article visibility toggles, and user management audit logs.
+- Produced an HD video demonstration showcasing:
+  * **User Onboarding & Front Page:** Player registration, input validation, and dynamic multi-language (i18n) selection.
+  * **Home Page & Platform Navigation:** Seamless routing across the Awareness Hub, Mini-Game Arena, and Quiz Engine from the central control center.
+  * **Awareness Hub & Content Discovery:** Real-time browsing and reading of cybersecurity threat topics and historical attack case studies parsed from localized JSON datasets.
+  * **Interactive Mini-Game Arena:** Live gameplay loops, timer mechanics, and real-time score tracking across all 4 mini-games (*Phishing Email Spotter*, *Password Strength Runner*, *Malware Defense Shield*, and *Social Engineering Challenge*).
+  * **Quiz Engine & SQLite Persistence:** Automated MCQ evaluation, instant percentage feedback calculation, and secure local JDBC score logging into `cyberaware.db`.
 
-  * View our [Final Video](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link).
+  - View our [Final Video](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link).
+    
+#### 4. Packaging & Cross-Platform Deployment Audit
+- Finalized standalone execution scripts (`run.bat` / `run.ps1`) and executable JAR packaging for single-command environment provisioning.
+- Completed cross-platform validation (Windows/Linux/macOS) ensuring Java desktop GUI, local SQLite runtime database (`cyberaware.db`), and JSON content stores launch seamlessly without external dependencies.
+  
+---
 
-#### 4. Containerization & Deployment Audit
-* Finalized `docker-compose.yml` for single-command environment provisioning.
-* Completed cross-platform validation ensuring backend, frontend, microservices, and databases launch seamlessly in production environments.
+### **Week 11: System Integration, Cross-Module Wiring & E2E Testing**
+
+* **Cross-Module Data Flow**: Successfully linked the **Front Page (Member 2)** onboarding data (Player Name & Language) to the **Home Dashboard (Member 1)** session state.
+  
+* **Content & Game Routing**: Integrated the **Awareness Hub (Member 3)** JSON reader and **Mini-Game Arena (Member 4)** state launcher into the central Home UI.
+  
+* **Database & Quiz Pipeline**: Connected the **Quiz Engine (Member 5)** grading system and mini-game score dispatch handlers to the local SQLite database (`cyberaware.db`) via JDBC PreparedStatements.
+  
+* **E2E Integration Testing**: Executed complete end-to-end user journeys (Registration ➔ Home Screen ➔ Awareness Module ➔ Mini-Games ➔ Quiz Assessment ➔ Score Persistence) to verify thread safety and eliminate memory leaks.
 
 ---
+
+### **Week 12: Final UI Polish, Packaging, Documentation & Project Release**
+* **UI/UX Refinement**: Added final visual polishes, button response states, dynamic language re-rendering fixes, and clear high-score dashboard widgets.
+  
+* **Standalone Packaging**: Compiled the Java application into an executable JAR file and created one-click execution scripts (`run.bat` for Windows and `run.ps1` for PowerShell) for automated environment provisioning.
+  
+* **Deployment Validation**: Completed cross-platform validation (Windows/Linux/macOS) ensuring the Java GUI runtime, local SQLite database file, and JSON content stores execute smoothly without external dependencies.
+  
+* **Final Deliverables**: Finalized the **Software Requirements Specification (SRS)**, Technical Architecture Document, Evaluation Slide Deck (PPT), Product Video Demonstration, and completed the GitHub repository documentation.
