@@ -405,12 +405,11 @@ Member 5 owned post-gameplay knowledge evaluation and local SQLite database pers
 
 | Module | Team Member Scope | Primary Focus | Key Deliverable |
 | :--- | :--- | :--- | :--- |
-| **1. Home Page** | End-to-End | Feeds, Search, Filtering, Caching | Public Feed, Search Engine, Indexing |
-| **2. Editor / Article Writing** | End-to-End | WYSIWYG/Markdown, Sanitization, Drafts | Content Writer, Auto-save Engine |
-| **3. User Profile / Portfolio** | End-to-End | Identity, Aggregation, Third-Party APIs | Live Developer Portfolio, GitHub Integration |
-| **4. Moderator Dashboard** | End-to-End | RBAC Security, Content Flags, Admin Logs | Governance Portal, Access Controls |
-| **5. AI Functionality** | End-to-End | LLM Microservice, Text Parsing, Async Jobs | Automated Summarizer, Smart Tag Generator |
-
+| **1. Home Page & Dashboard** | End-to-End | Section Launchers, Dynamic Status Feeds, View Switching | Unified Navigation Hub, Live Status Bar |
+| **2. Front Page & Localization** | End-to-End | Player Registration, Input Validation, i18n Engine | Welcome Portal, Multi-Language Engine |
+| **3. Awareness Hub & Content** | End-to-End | Theoretical Topics, Case Studies, JSON Parsing | Learning Portal, Dynamic Content Loader |
+| **4. Mini-Game Arena** | End-to-End | Gameplay Loops, Timer Threads, Score Mechanics | 4 Mini-Games Suite, Score Logger |
+| **5. Quiz Engine & Database** | End-to-End | MCQ Randomizer, Automated Grading, JDBC Persistence | Assessment Engine, SQLite Schema & DAO |
 ---
 
 ## Week 9 
