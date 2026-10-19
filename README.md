@@ -151,7 +151,8 @@ The application utilizes a robust persistence architecture to handle structured 
 ---
 ### UML Design
 ---
-* [Cybersecurity Awareness Game Class Diagram](![UML Diagram](assets/reference-images/UML.jpeg))
+* **Class / UML Diagram:**
+  ![UML Diagram](assets/reference-images/UML.jpeg)
 
 * [[Cybersecurity Awareness Game]![Project Screenshot](./image/Gemini_Generated_Image_4dvtt54dvtt54dvt.png)
 
