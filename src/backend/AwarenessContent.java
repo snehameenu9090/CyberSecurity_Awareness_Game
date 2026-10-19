@@ -1,0 +1,82 @@
+package com.cyberaware.backend;
+
+import java.util.List;
+
+public final class AwarenessContent {
+    private AwarenessContent() {
+    }
+
+    public static List<AwarenessTopic> allTopics() {
+        return List.of(
+                new AwarenessTopic("Phishing and scams",
+                        "Phishing is a message designed to trick you into clicking a harmful link, opening an unsafe attachment, paying a fake fee, or sharing private information. Scammers often pretend to be a bank, delivery company, school, or someone you know. Watch for unexpected requests, pressure to act immediately, unfamiliar attachments, and sender addresses or website names that are slightly misspelled. A familiar logo or your name in the message does not prove it is genuine.",
+                        "You receive a text saying a parcel is held and you must pay a small fee through a link today. Instead of tapping the link, open the delivery company's official app or type its known website address yourself. Contact the sender through a number you already trust if you are still unsure.",
+                        "Stop before clicking. Inspect the complete sender address and link destination. Do not reply with passwords, payment details, or sign-in codes. Report or delete suspicious messages, and verify the request through an official channel."),
+                new AwarenessTopic("Password safety",
+                        "A strong password should be long, hard to guess, and different for every account. Reusing a password is risky because criminals try passwords stolen from one website on email, banking, and social-media accounts. A password manager can create and remember unique passwords for you. Protect the manager with a strong master password and multi-factor authentication when available.",
+                        "A shopping website is breached and an old password becomes public. If that same password protects your email, an attacker may try it there too. A unique email password limits the damage; changing a reused password on every affected account closes the other doors.",
+                        "Use a unique password for every account. Prefer long passphrases or a password manager. Never share passwords, one-time codes, or account recovery codes. Change a password promptly if a service reports it was exposed."),
+                new AwarenessTopic("Multi-factor authentication",
+                        "Multi-factor authentication (MFA) asks for another proof of identity in addition to your password, such as an authenticator-app code, a security key, or a prompt on your device. This extra step can protect an account even if a password is stolen. Never approve a prompt you did not start, and never read a one-time code to someone who contacts you.",
+                        "An attacker has guessed a password and sends repeated approval requests to the account owner. The owner denies the unexpected prompts and changes the password using the service's official app. Approving an unfamiliar request could give the attacker access.",
+                        "Enable MFA for email, financial, school, and social accounts. Prefer a security key or authenticator app when offered. Deny unrequested prompts, change a potentially exposed password, and keep recovery codes somewhere private and secure."),
+                new AwarenessTopic("Updates and devices",
+                        "Operating-system, browser, and app updates often fix security weaknesses as well as add features. Delaying an important update can leave a known weakness open. Install updates using the device's built-in update settings or the software's official app store. Avoid update links in unexpected pop-ups, messages, or downloads.",
+                        "A website displays a warning that a video player is out of date and offers a download. The file could be unwanted software. Close the page and check for updates through the computer's settings or the official app store instead.",
+                        "Turn on automatic security updates when practical. Install updates from built-in settings or trusted official stores. Restart when asked, and remove apps you no longer use."),
+                new AwarenessTopic("Public Wi-Fi",
+                        "Public Wi-Fi can be convenient, but a network name alone does not prove who operates the hotspot. Avoid sensitive activity on networks you do not trust, keep file sharing off, and do not ignore browser security warnings. Use your mobile connection for sensitive tasks when possible; HTTPS and a reputable VPN can help protect traffic but do not make every scam or fake site safe.",
+                        "At a cafe, two networks have nearly identical names. One may be an impostor. Ask staff which exact network is official, turn off automatic joining, and do not install a certificate or app just because a hotspot asks you to.",
+                        "Confirm the network name with staff. Disable automatic joining and public file sharing. Keep your device and browser updated. Never enter a password after a certificate or security warning; leave the site and verify it independently."),
+                new AwarenessTopic("Backups and recovery",
+                        "A backup is a separate copy of important files that you can restore if a device is lost, broken, or hit by ransomware. Keep backups current and separate from your everyday device; a drive that is always connected may also be damaged or encrypted. Online backup accounts should have unique passwords and MFA. Test restoring a file so you know the backup works.",
+                        "Ransomware locks the files on a laptop. A recent backup stored separately and disconnected before the attack can help recover the files. Paying a ransom does not guarantee that files will be restored or that copies will be deleted.",
+                        "Back up important files on a regular schedule to a separate location. Keep one copy disconnected or otherwise protected. Test recovery occasionally, secure online backup accounts, and do not connect a backup drive to a device you suspect is infected."));
+    }
+
+    public static List<AwarenessTopic> allTopics(StudyLanguage language) {
+        if (language == StudyLanguage.ENGLISH) return allTopics();
+        return switch (language) {
+            case ENGLISH -> allTopics();
+            case HINDI -> List.of(
+                    topic("फ़िशिंग और धोखाधड़ी", "फ़िशिंग संदेश बैंक या डिलीवरी कंपनी बनकर नकली लिंक भेजते हैं। जल्दबाज़ी, अज्ञात प्रेषक और निजी जानकारी की माँग से सावधान रहें।", "पार्सल शुल्क का अनजान लिंक मिले तो उसे न खोलें; कंपनी का आधिकारिक ऐप खुद खोलें।", "लिंक जाँचें, पासवर्ड या OTP साझा न करें और संदिग्ध संदेश रिपोर्ट करें।"),
+                    topic("पासवर्ड सुरक्षा", "हर खाते के लिए लंबा और अलग पासवर्ड रखें। एक साइट का लीक हुआ पासवर्ड दूसरे खातों पर भी आज़माया जा सकता है।", "खरीदारी साइट का पासवर्ड ईमेल पर भी हो तो दोनों खाते खतरे में पड़ सकते हैं।", "पासवर्ड दोबारा इस्तेमाल न करें। पासवर्ड मैनेजर और MFA का उपयोग करें।"),
+                    topic("बहु-कारक प्रमाणीकरण", "MFA पासवर्ड के अलावा एक और पहचान जाँचता है। अनचाहा साइन-इन अनुरोध कभी मंज़ूर न करें।", "बार-बार आए लॉगिन अनुरोध को अस्वीकार करें और आधिकारिक ऐप से खाता जाँचें।", "ईमेल और बैंक खातों पर MFA चालू करें। OTP किसी को न बताएं।"),
+                    topic("अपडेट और डिवाइस", "सिस्टम और ऐप अपडेट सुरक्षा की कमियाँ ठीक करते हैं। अपडेट केवल डिवाइस सेटिंग या आधिकारिक स्टोर से लें।", "वेबसाइट का अज्ञात अपडेट पॉप-अप नकली सॉफ़्टवेयर हो सकता है।", "स्वचालित सुरक्षा अपडेट चालू रखें और अनजान डाउनलोड से बचें।"),
+                    topic("सार्वजनिक Wi-Fi", "हॉटस्पॉट का नाम उसकी असलियत साबित नहीं करता। सार्वजनिक नेटवर्क पर संवेदनशील काम से बचें।", "कैफ़े में मिलता-जुलता नकली Wi-Fi नाम दिखे तो कर्मचारियों से सही नाम पूछें।", "नेटवर्क की पुष्टि करें, ऑटो-जॉइन बंद रखें और सुरक्षा चेतावनी पर आगे न बढ़ें।"),
+                    topic("बैकअप और रिकवरी", "बैकअप फ़ाइलों की अलग सुरक्षित प्रति है। हमेशा जुड़ी ड्राइव भी रैनसमवेयर से प्रभावित हो सकती है।", "रैनसमवेयर के बाद अलग रखी गई हाल की बैकअप प्रति फ़ाइलें लौटाने में मदद कर सकती है।", "नियमित बैकअप लें, उसे अलग रखें और कभी-कभी रिकवरी जाँचें।"));
+            case BENGALI -> List.of(
+                    topic("ফিশিং ও প্রতারণা", "ফিশিং বার্তা ব্যাংক বা ডেলিভারি সংস্থা সেজে ভুয়া লিংক পাঠায়। তাড়াহুড়ো, অচেনা প্রেরক ও ব্যক্তিগত তথ্যের অনুরোধে সতর্ক থাকুন।", "পার্সেল ফি চেয়ে অচেনা লিংক এলে খুলবেন না; সংস্থার অফিসিয়াল অ্যাপ নিজে খুলুন।", "লিংক যাচাই করুন, পাসওয়ার্ড বা OTP দেবেন না, সন্দেহজনক বার্তা রিপোর্ট করুন।"),
+                    topic("পাসওয়ার্ড নিরাপত্তা", "প্রতিটি অ্যাকাউন্টে দীর্ঘ ও আলাদা পাসওয়ার্ড ব্যবহার করুন। এক সাইটের ফাঁস হওয়া পাসওয়ার্ড অন্য অ্যাকাউন্টেও চেষ্টা করা হয়।", "কেনাকাটার সাইটের পাসওয়ার্ড ইমেইলেও থাকলে দুটো অ্যাকাউন্টই ঝুঁকিতে পড়ে।", "পাসওয়ার্ড পুনর্ব্যবহার করবেন না। পাসওয়ার্ড ম্যানেজার ও MFA ব্যবহার করুন।"),
+                    topic("মাল্টি-ফ্যাক্টর অথেনটিকেশন", "MFA পাসওয়ার্ডের পাশাপাশি আরেকটি পরিচয় যাচাই করে। নিজে শুরু না করা লগইন অনুরোধ অনুমোদন করবেন না।", "বারবার আসা লগইন অনুরোধ প্রত্যাখ্যান করে অফিসিয়াল অ্যাপে অ্যাকাউন্ট দেখুন।", "ইমেইল ও ব্যাংক অ্যাকাউন্টে MFA চালু করুন। OTP কাউকে বলবেন না।"),
+                    topic("আপডেট ও ডিভাইস", "সিস্টেম ও অ্যাপের আপডেট নিরাপত্তার দুর্বলতা ঠিক করে। ডিভাইসের সেটিংস বা অফিসিয়াল স্টোর থেকেই আপডেট নিন।", "অচেনা ওয়েবসাইটের আপডেট পপ-আপ ক্ষতিকর সফটওয়্যার হতে পারে।", "স্বয়ংক্রিয় নিরাপত্তা আপডেট চালু রাখুন এবং অচেনা ডাউনলোড এড়িয়ে চলুন।"),
+                    topic("পাবলিক Wi-Fi", "হটস্পটের নাম দেখেই সেটি আসল কি না বোঝা যায় না। অচেনা নেটওয়ার্কে সংবেদনশীল কাজ এড়িয়ে চলুন।", "ক্যাফেতে কাছাকাছি নামের Wi-Fi দেখলে কর্মীদের কাছে সঠিক নাম জেনে নিন।", "নেটওয়ার্ক যাচাই করুন, অটো-জয়েন বন্ধ রাখুন, নিরাপত্তা সতর্কতা উপেক্ষা করবেন না।"),
+                    topic("ব্যাকআপ ও পুনরুদ্ধার", "ব্যাকআপ হলো গুরুত্বপূর্ণ ফাইলের আলাদা কপি। সবসময় যুক্ত থাকা ড্রাইভও র‍্যানসমওয়্যারে আক্রান্ত হতে পারে।", "আলাদা রাখা সাম্প্রতিক ব্যাকআপ র‍্যানসমওয়্যারের পর ফাইল ফেরাতে সাহায্য করতে পারে।", "নিয়মিত ব্যাকআপ নিন, আলাদা করে রাখুন এবং পুনরুদ্ধার পরীক্ষা করুন।"));
+            case TAMIL -> List.of(
+                    topic("ஃபிஷிங் மற்றும் மோசடிகள்", "வங்கி அல்லது விநியோக நிறுவனம் போல நடித்து போலி இணைப்புகளை அனுப்புவது ஃபிஷிங். அவசர அழுத்தம், தெரியாத அனுப்புநர், தனிப்பட்ட தகவல் கோரிக்கை ஆகியவற்றைக் கவனியுங்கள்.", "பார்சல் கட்டணம் கேட்கும் தெரியாத இணைப்பைத் திறக்காமல், நிறுவனத்தின் அதிகாரப்பூர்வ செயலியைத் திறக்கவும்.", "இணைப்பைச் சரிபார்க்கவும்; கடவுச்சொல் அல்லது OTP பகிர வேண்டாம்; சந்தேகச் செய்தியைப் புகாரளிக்கவும்."),
+                    topic("கடவுச்சொல் பாதுகாப்பு", "ஒவ்வொரு கணக்குக்கும் நீளமான தனித்த கடவுச்சொல் பயன்படுத்துங்கள். ஒரு தளத்தில் கசிந்த கடவுச்சொல்லை மற்ற கணக்குகளிலும் முயற்சிப்பார்கள்.", "வாங்கும் தளத்தின் கடவுச்சொல்லை மின்னஞ்சலிலும் பயன்படுத்தினால் இரு கணக்குகளும் ஆபத்தில் இருக்கும்.", "கடவுச்சொல்லை மீண்டும் பயன்படுத்த வேண்டாம். கடவுச்சொல் நிர்வாகி மற்றும் MFA பயன்படுத்துங்கள்."),
+                    topic("பல-காரணி அங்கீகாரம்", "MFA கடவுச்சொல்லுடன் கூடுதல் அடையாளச் சரிபார்ப்பைக் கேட்கும். நீங்களே தொடங்காத உள்நுழைவை ஏற்க வேண்டாம்.", "தொடர்ச்சியான உள்நுழைவு கோரிக்கையை மறுத்து அதிகாரப்பூர்வ செயலியில் கணக்கைச் சரிபார்க்கவும்.", "மின்னஞ்சல் மற்றும் வங்கிக் கணக்குகளில் MFA இயக்கவும். OTP-ஐ யாரிடமும் கூற வேண்டாம்."),
+                    topic("புதுப்பிப்புகள் மற்றும் சாதனங்கள்", "இயங்குதளம் மற்றும் செயலி புதுப்பிப்புகள் பாதுகாப்புக் குறைகளைச் சரிசெய்யும். சாதன அமைப்புகள் அல்லது அதிகாரப்பூர்வ கடையில் மட்டும் புதுப்பிக்கவும்.", "தெரியாத இணையதளத்தின் புதுப்பிப்பு சாளரம் தீங்கான மென்பொருளாக இருக்கலாம்.", "தானியங்கி பாதுகாப்புப் புதுப்பிப்புகளை இயக்கி, தெரியாத பதிவிறக்கங்களைத் தவிர்க்கவும்."),
+                    topic("பொது Wi-Fi", "ஹாட்ஸ்பாட் பெயர் மட்டும் அது உண்மையானது என்பதை நிரூபிக்காது. நம்பாத வலையமைப்பில் முக்கியப் பணிகளைத் தவிர்க்கவும்.", "கஃபேவில் ஒத்த பெயருள்ள Wi-Fi இருந்தால் சரியான பெயரை ஊழியர்களிடம் கேளுங்கள்.", "வலையமைப்பை உறுதிசெய்து, தானாக இணைவதை நிறுத்தி, பாதுகாப்பு எச்சரிக்கையைப் புறக்கணிக்காதீர்கள்."),
+                    topic("காப்புப்பிரதி மற்றும் மீட்பு", "காப்புப்பிரதி என்பது முக்கிய கோப்புகளின் தனி நகல். எப்போதும் இணைந்திருக்கும் இயக்ககமும் ransomware-ஆல் பாதிக்கப்படலாம்.", "தனியாக வைத்த சமீபத்திய காப்புப்பிரதி ransomware தாக்குதலுக்குப் பின் கோப்புகளை மீட்க உதவும்.", "தொடர்ந்து காப்புப்பிரதி எடுத்து, தனியே வைத்துப், மீட்டெடுப்பைச் சோதிக்கவும்."));
+            case TELUGU -> List.of(
+                    topic("ఫిషింగ్ మరియు మోసాలు", "బ్యాంకు లేదా డెలివరీ సంస్థలా నటించి నకిలీ లింకులు పంపడమే ఫిషింగ్. తొందరపెట్టడం, తెలియని పంపినవారు, వ్యక్తిగత సమాచారం అడగడం గమనించండి.", "పార్సెల్ రుసుము అడిగే తెలియని లింక్‌ను తెరవకుండా సంస్థ అధికారిక యాప్‌ను మీరే తెరవండి.", "లింక్‌ను పరిశీలించండి; పాస్‌వర్డ్ లేదా OTP ఇవ్వకండి; అనుమానాస్పద సందేశాన్ని నివేదించండి."),
+                    topic("పాస్‌వర్డ్ భద్రత", "ప్రతి ఖాతాకు పొడవైన, ప్రత్యేక పాస్‌వర్డ్ వాడండి. ఒక సైట్‌లో బయటపడిన పాస్‌వర్డ్‌ను ఇతర ఖాతాల్లోనూ ప్రయత్నిస్తారు.", "షాపింగ్ సైట్ పాస్‌వర్డ్‌ను ఇమెయిల్‌లోనూ వాడితే రెండు ఖాతాలూ ప్రమాదంలో ఉంటాయి.", "పాస్‌వర్డ్‌ను మళ్లీ వాడవద్దు. పాస్‌వర్డ్ మేనేజర్, MFA ఉపయోగించండి."),
+                    topic("బహుళ-దశల ధృవీకరణ", "MFA పాస్‌వర్డ్‌తో పాటు మరొక గుర్తింపు తనిఖీ చేస్తుంది. మీరు ప్రారంభించని లాగిన్ అభ్యర్థనను ఆమోదించవద్దు.", "పునరావృత లాగిన్ అభ్యర్థనను తిరస్కరించి అధికారిక యాప్‌లో ఖాతాను తనిఖీ చేయండి.", "ఇమెయిల్, బ్యాంకు ఖాతాల్లో MFA ఆన్ చేయండి. OTP ఎవరితోనూ పంచుకోవద్దు."),
+                    topic("నవీకరణలు మరియు పరికరాలు", "సిస్టమ్, యాప్ నవీకరణలు భద్రతా లోపాలను సరిచేస్తాయి. పరికర సెట్టింగులు లేదా అధికారిక స్టోర్ నుంచే నవీకరించండి.", "తెలియని వెబ్‌సైట్ నవీకరణ పాప్-అప్ హానికర సాఫ్ట్‌వేర్ కావచ్చు.", "ఆటోమేటిక్ భద్రతా నవీకరణలు ఆన్ చేసి తెలియని డౌన్‌లోడ్‌లను నివారించండి."),
+                    topic("పబ్లిక్ Wi-Fi", "హాట్‌స్పాట్ పేరు మాత్రమే అది నిజమైనదని నిరూపించదు. నమ్మని నెట్‌వర్క్‌లో ముఖ్యమైన పనులు చేయవద్దు.", "కేఫేలో ఒకేలా కనిపించే Wi-Fi పేర్లు ఉంటే సరైనదేదో సిబ్బందిని అడగండి.", "నెట్‌వర్క్‌ను నిర్ధారించండి, ఆటో-జాయిన్ ఆపండి, భద్రతా హెచ్చరికలను పట్టించుకోండి."),
+                    topic("బ్యాకప్ మరియు పునరుద్ధరణ", "బ్యాకప్ అనేది ముఖ్యమైన ఫైళ్ల వేరే కాపీ. ఎప్పుడూ కనెక్ట్‌లో ఉన్న డ్రైవ్ కూడా రాన్సమ్‌వేర్‌కు గురవుతుంది.", "వేరుగా ఉంచిన ఇటీవలి బ్యాకప్ రాన్సమ్‌వేర్ తర్వాత ఫైళ్లను తిరిగి పొందడంలో సహాయపడుతుంది.", "క్రమం తప్పకుండా బ్యాకప్ తీసి వేరుగా ఉంచండి; పునరుద్ధరణను పరీక్షించండి."));
+            case MARATHI -> List.of(
+                    topic("फिशिंग आणि फसवणूक", "बँक किंवा कुरिअर कंपनी असल्याचे भासवून बनावट दुवे पाठवणे म्हणजे फिशिंग. घाईचा दबाव, अनोळखी पाठवणारा आणि वैयक्तिक माहितीची मागणी ओळखा.", "पार्सल शुल्काचा अनोळखी दुवा उघडू नका; कंपनीचे अधिकृत अॅप स्वतः उघडा.", "दुवा तपासा; पासवर्ड किंवा OTP देऊ नका; संशयास्पद संदेशाची तक्रार करा."),
+                    topic("पासवर्ड सुरक्षा", "प्रत्येक खात्यासाठी लांब आणि वेगळा पासवर्ड वापरा. एका संकेतस्थळावर उघड झालेला पासवर्ड इतर खात्यांवरही वापरून पाहतात.", "खरेदीच्या संकेतस्थळाचा पासवर्ड ईमेलसाठीही असल्यास दोन्ही खाती धोक्यात येतात.", "पासवर्ड पुन्हा वापरू नका. पासवर्ड मॅनेजर आणि MFA वापरा."),
+                    topic("बहु-घटक प्रमाणीकरण", "MFA पासवर्डसोबत आणखी एक ओळख तपासते. तुम्ही सुरू न केलेली लॉगिन विनंती मंजूर करू नका.", "वारंवार येणाऱ्या लॉगिन विनंत्या नाकारून अधिकृत अॅपमध्ये खाते तपासा.", "ईमेल आणि बँक खात्यांवर MFA सुरू करा. OTP कोणालाही सांगू नका."),
+                    topic("अपडेट आणि उपकरणे", "सिस्टम व अॅप अपडेट सुरक्षा त्रुटी दुरुस्त करतात. उपकरणाच्या सेटिंग्ज किंवा अधिकृत स्टोअरमधूनच अपडेट करा.", "अनोळखी संकेतस्थळावरील अपडेट पॉप-अप हानिकारक सॉफ्टवेअर असू शकते.", "स्वयंचलित सुरक्षा अपडेट सुरू ठेवा आणि अनोळखी डाउनलोड टाळा."),
+                    topic("सार्वजनिक Wi-Fi", "हॉटस्पॉटचे नाव त्याची सत्यता सिद्ध करत नाही. अविश्वसनीय नेटवर्कवर संवेदनशील काम टाळा.", "कॅफेमध्ये सारखी नावे असलेले Wi-Fi दिसल्यास योग्य नाव कर्मचाऱ्यांना विचारा.", "नेटवर्कची खात्री करा, ऑटो-जॉइन बंद करा आणि सुरक्षा इशाऱ्याकडे दुर्लक्ष करू नका."),
+                    topic("बॅकअप आणि पुनर्प्राप्ती", "बॅकअप म्हणजे महत्त्वाच्या फाइल्सची वेगळी प्रत. सतत जोडलेली ड्राइव्हही रॅन्समवेअरमुळे बाधित होऊ शकते.", "वेगळी ठेवलेली अलीकडील बॅकअप प्रत रॅन्समवेअरनंतर फाइल्स परत मिळवण्यास मदत करते.", "नियमित बॅकअप घ्या, वेगळा ठेवा आणि पुनर्प्राप्ती तपासा."));
+        };
+    }
+
+    private static AwarenessTopic topic(String title, String advice, String example, String checklist) {
+        return new AwarenessTopic(title, advice, example, checklist);
+    }
+}
