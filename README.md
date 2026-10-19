@@ -152,7 +152,9 @@ The application utilizes a robust persistence architecture to handle structured 
 ### UML Design
 ---
 * **Class / UML Diagram:**
-    ![UML Diagram](image/UML.jpeg)
+   <p align="center">
+  <img src="image/UML.jpeg" alt="Cybersecurity Awareness Game UML Diagram" width="100%">
+</p>
 
 * [[Cybersecurity Awareness Game]![Project Screenshot](./image/Gemini_Generated_Image_4dvtt54dvtt54dvt.png)
 
