@@ -246,8 +246,7 @@ Features live arcade game session tracking, multi-language support (English, Hin
 * [Cyber Security Arcade Dashboard]![Game Dashboard](./image/Screenshot%202026-10-20%20215127.png)
 * [Cyber Shield Arcade  Game]![Game Dashboard](./image/Screenshot%202026-10-20%20215127.png)
 * [Awareness Module View]![Learning View:](./image/Screenshot%202026-10-20%20215109.png)
-* [Quiz Module View]![Quiz View:](./image/Screenshot%2026-10-20215144.png)
-
+* [Quiz Module View]![Quiz View:](./image/Screenshot%202026-10-20%20215144.png)
 
 ---
 
