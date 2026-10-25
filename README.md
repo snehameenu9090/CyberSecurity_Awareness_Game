@@ -207,7 +207,8 @@ The application utilizes a hybrid storage strategy consisting of a relational **
 
 ---
 ### C. Entity-Relationship (ER) Diagram)
-
+**Database Entity-Relationship Schema**: Represents the relational mapping between players, game scores, and assessment results.
+```mermaid
 erDiagram
     PLAYERS ||--o{ GAME_SCORES : "records score"
     PLAYERS ||--o{ QUIZ_RESULTS : "completes assessment"
