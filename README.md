@@ -204,11 +204,12 @@ The application utilizes a hybrid storage strategy consisting of a relational **
   "realWorldExample": "The 2020 Twitter Spear-Phishing Incident where administrative credentials were compromised."
 }
 
+
 ---
 
-### C. Entity-Relationship (ER) Diagram
+### C. Entity-Relationship (ER) Diagram)
 
-  erDiagram
+* **`erDiagram`**
     PLAYERS ||--o{ GAME_SCORES : "records score"
     PLAYERS ||--o{ QUIZ_RESULTS : "completes assessment"
 
