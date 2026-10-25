@@ -243,9 +243,9 @@ erDiagram
 
 #### A. Cyber Security Arcade Dashboard & Learning Views
 Features live arcade game session tracking, multi-language support (English, Hindi, Tamil, Telugu, Bengali, Marathi), and local SQLite database persistence
-* [Cyber Security Arcade Dashboard]![Arcade Dashboard](./image/image.png)
+* [Cyber Security Arcade Dashboard]![Game Dashboard](./image/image.png)
  
-* [Quiz & Learning Module View]![Module View:](./image/image%20copy.png)
+* [Quiz & Learning Module View]![Quiz View:](./image/image%20copy.png)
 
 
 ---
