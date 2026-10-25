@@ -269,10 +269,10 @@ Cybersecurity-Awareness-Game/
 ├── image/                             # Static Project & UI Screenshot Asset Storage
 │   ├── image.png                      # Cyber Security Arcade Dashboard Screenshot
 │   ├── image copy.png                 # Quiz & Learning Module View Placeholder
-│   ├── Screenshot 2026-10-19 215403.png # Main Menu / Login View Screenshot
-│   ├── Screenshot 2026-10-20 215109.png # Quiz & Learning Module View Screenshot
-│   ├── Screenshot 2026-10-20 215127.png # Security Awareness Module View Screenshot
-│   └── Screenshot 2026-10-20 215144.png # Game Level & Progress View Screenshot
+│   ├── Screenshot 2026-10-19 215403.png # Game Screenshot
+│   ├── Screenshot 2026-10-20 215109.png # Security Awareness Module View Screenshot
+│   ├── Screenshot 2026-10-20 215127.png # Learning Module View Screenshot
+│   └── Screenshot 2026-10-20 215144.png #  Quiz View Screenshot
 │
 └── src/
     ├── main/
