@@ -203,13 +203,12 @@ The application utilizes a hybrid storage strategy consisting of a relational **
   "description": "Learn how attackers spoof domain names and manipulate urgency.",
   "realWorldExample": "The 2020 Twitter Spear-Phishing Incident where administrative credentials were compromised."
 }
-
+ ```
 
 ---
-
 ### C. Entity-Relationship (ER) Diagram)
 
-* **`erDiagram`**
+erDiagram
     PLAYERS ||--o{ GAME_SCORES : "records score"
     PLAYERS ||--o{ QUIZ_RESULTS : "completes assessment"
 
@@ -240,14 +239,13 @@ The application utilizes a hybrid storage strategy consisting of a relational **
 
 ---
 
-### 2. User Interface (UI) Mock-ups
+### 2. User Interface (UI) Mock-ups & Game Views
 
-#### A. Moderator Control Center (Queue, Read Article & Moderation Actions)
-Features live queue monitoring, in-app full article reader view with DOMPurify XSS protection, and inline visibility controls (`PUBLISHED`, `HIDDEN`, `DRAFT`).
-
-* [DevStream Moderator Control Center]![Moderator Dashboard](./image/image.png)
+#### A. Cyber Security Arcade Dashboard & Learning Views
+Features live arcade game session tracking, multi-language support (English, Hindi, Tamil, Telugu, Bengali, Marathi), and local SQLite database persistence
+* [Cyber Security Arcade Dashboard]![Arcade Dashboard](./image/image.png)
  
-* [DevStream User Dashboard]![User Dashboard](./image/image%20copy.png)
+* [Quiz & Learning Module View]![Module View:](./image/image%20copy.png)
 
 
 ---
