@@ -244,7 +244,7 @@ erDiagram
 #### A. Cyber Security Arcade Dashboard & Learning Views
 Features live arcade game session tracking, multi-language support (English, Hindi, Tamil, Telugu, Bengali, Marathi), and local SQLite database persistence
 * [Cyber Security Arcade Dashboard]![Game Dashboard](./image/Screenshot%202026-10-20%20215127.png)
-* [Cyber Shield  Defender Arcade  Game]![Game Dashboard](./image/Screenshot%202026-10-20%20215144.png)
+* [Cyber Shield  Defender Arcade  Game]![Game Dashboard](./image/Screenshot%202026-10-19%20215403.png)
 * [Awareness Module View]![Learning View:](./image/Screenshot%202026-10-20%20215109.png)
 * [Quiz Module View]![Quiz View:](./image/Screenshot%202026-10-20%20215144.png)
 
