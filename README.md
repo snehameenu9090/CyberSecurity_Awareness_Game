@@ -257,39 +257,48 @@ Features live arcade game session tracking, multi-language support (English, Hin
 ```text
 Cybersecurity-Awareness-Game/
 │
-├── README.md
-├── pom.xml
-├── run.bat
-├── run.ps1
+├── README.md                          # Project Documentation & Architecture Guide
+├── ARCHITECTURE_DOC.md                # Software Requirements Specification (SRS)
+├── pom.xml                            # Maven Dependencies & Build Configuration
+├── run.bat                            # Windows Batch Launcher Script
+├── run.ps1                            # PowerShell Launcher Script
 │
 ├── data/
-│   └── cyberaware.db
+│   └── cyberaware.db                  # Local SQLite Database Persistence File
+│
+├── image/                             # Static Project & UI Screenshot Asset Storage
+│   ├── image.png                      # Cyber Security Arcade Dashboard Screenshot
+│   ├── image copy.png                 # Quiz & Learning Module View Placeholder
+│   ├── Screenshot 2026-10-19 215403.png # Main Menu / Login View Screenshot
+│   ├── Screenshot 2026-10-20 215109.png # Quiz & Learning Module View Screenshot
+│   ├── Screenshot 2026-10-20 215127.png # Security Awareness Module View Screenshot
+│   └── Screenshot 2026-10-20 215144.png # Game Level & Progress View Screenshot
 │
 └── src/
     ├── main/
     │   └── java/
     │       └── com/
     │           └── cyberaware/
-    │               ├── backend/
+    │               ├── backend/       # Application Lifecycle & App Entry Point
     │               │   └── CyberAwareApp.java
     │               │
-    │               ├── ui/
+    │               ├── ui/            # Java Swing GUI Views, Dashboard & Navigation Panels
     │               │   └── CyberAwareUI.java
     │               │
-    │               ├── awareness/
+    │               ├── awareness/     # Learning Content Modules & Theoretical Topics
     │               │   └── AwarenessModule.java
     │               │
-    │               ├── games/
+    │               ├── games/         # Arcade Mini-Games Logic (Phishing, Password, Wi-Fi, Malware, AI)
     │               │   └── GameModule.java
     │               │
-    │               ├── quiz/
+    │               ├── quiz/          # Assessment Engine, Question Generators & Evaluators
     │               │   └── QuizModule.java
     │               │
-    │               └── database/
+    │               └── database/      # SQLite JDBC Manager, DAO Layer & Connection Handler
     │                   └── DatabaseManager.java
     │
     └── test/
-        └── java/
+        └── java/                      # Automated Unit & Integration Tests
 ```
 
 In a modular desktop application architecture, dividing the system into specialized functional modules allows each team member to take complete ownership of their feature stack—covering GUI design (JavaFX/Swing), event-driven application logic, local JDBC database schemas, dynamic content parsing, and game state mechanics.
