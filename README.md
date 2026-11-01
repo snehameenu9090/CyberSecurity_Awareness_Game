@@ -545,7 +545,7 @@ During **Week 10**, the DevStream engineering team completed the final system ev
 
 | Deliverable | Description | Resource Link |
 | :--- | :--- | :--- |
-| 📄 **Final Project Report** | Complete Technical Architecture Document, System Requirements Specification (SRS), and Evaluation Metrics | [View Project Report (PDF)](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link) \|
+| 📄 **Final Project Report** | Complete Technical Architecture Document, System Requirements Specification (SRS), and Evaluation Metrics | [View Project Report (PDF)](docs/Cybersecurity_Awareness_Game_Report.pdf) \|
 | 📊 **Presentation Deck (PPT)** | 20-Slide B.Tech Final Project Evaluation Deck covering System Design, Polyglot DB, AI Microservice & Testing | [View Presentation (PPT / Slides)](./docs/Cybersecurity_Awareness_Game_Edited.ppt.pdf) |
 | 🎥 **Video Demonstration** |HD Video Walkthrough of Cybersecurity Awareness Game (Java Swing Architecture, Quiz Modules, Interactive Mini-Games & Swara AI Voiceover). | [Watch Video Demonstration (YouTube)](https://youtu.be/rKa4CYYWeyI) \| 
 
@@ -561,7 +561,7 @@ During **Week 10**, the DevStream engineering team completed the final system ev
   * **Session-Based Onboarding & Localization Engine** supporting dynamic multi-language preferences across all active screens.
   * **Input Sanitization & Data Integrity** ensuring zero-latency asynchronous resource loading and secure JDBC PreparedStatement transactions.
 
-  - View our [Final Project Report](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link).
+  - View our [Final Project Report]((docs/Cybersecurity_Awareness_Game_Report.pdf).
     
 #### 2. Final Evaluation Slide Deck (PPT)
 
