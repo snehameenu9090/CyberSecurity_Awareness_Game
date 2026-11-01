@@ -67,7 +67,7 @@ Network accounts, cloud synchronization, real malware scanning, and network-base
 
 ### SRS PDF
 
- You can access the complete [View SRS Document](./SRS_pages_.docx).
+ **Software Requirements Specification (SRS):** [View SRS PDF Document](./SRS_pages_.pdf)
 ---
 
 ## Architecture & Core Modules
