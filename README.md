@@ -545,9 +545,9 @@ During **Week 10**, the DevStream engineering team completed the final system ev
 
 | Deliverable | Description | Resource Link |
 | :--- | :--- | :--- |
-| 📄 **Final Project Report** | Complete Technical Architecture Document, System Requirements Specification (SRS), and Evaluation Metrics | [View Project Report (PDF)](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link) \| [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
+| 📄 **Final Project Report** | Complete Technical Architecture Document, System Requirements Specification (SRS), and Evaluation Metrics | [View Project Report (PDF)](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link) \|
 | 📊 **Presentation Deck (PPT)** | 20-Slide B.Tech Final Project Evaluation Deck covering System Design, Polyglot DB, AI Microservice & Testing | [View Presentation (PPT / Slides)](./docs/Cybersecurity_Awareness_Game_Edited.ppt.pdf) |
-| 🎥 **Video Demonstration** |HD Video Walkthrough of Cybersecurity Awareness Game (Java Swing Architecture, Quiz Modules, Interactive Mini-Games & Swara AI Voiceover). | [Watch Video Demonstration (YouTube)](https://youtu.be/rKa4CYYWeyI) \| [Drive Video Link](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link) |
+| 🎥 **Video Demonstration** |HD Video Walkthrough of Cybersecurity Awareness Game (Java Swing Architecture, Quiz Modules, Interactive Mini-Games & Swara AI Voiceover). | [Watch Video Demonstration (YouTube)](https://youtu.be/rKa4CYYWeyI) \| 
 
 ---
 
@@ -581,7 +581,7 @@ During **Week 10**, the DevStream engineering team completed the final system ev
   * **Interactive Mini-Game Arena:** Live gameplay loops, timer mechanics, and real-time score tracking across all 4 mini-games (*Phishing Email Spotter*, *Password Strength Runner*, *Malware Defense Shield*, and *Social Engineering Challenge*).
   * **Quiz Engine & SQLite Persistence:** Automated MCQ evaluation, instant percentage feedback calculation, and secure local JDBC score logging into `cyberaware.db`.
 
-  - View our [Final Video](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link).
+  - View our [Final Video](https://youtu.be/rKa4CYYWeyI).
     
 #### 4. Packaging & Cross-Platform Deployment Audit
 - Finalized standalone execution scripts (`run.bat` / `run.ps1`) and executable JAR packaging for single-command environment provisioning.
