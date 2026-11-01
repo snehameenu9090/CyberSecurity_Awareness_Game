@@ -547,7 +547,7 @@ During **Week 10**, the DevStream engineering team completed the final system ev
 | :--- | :--- | :--- |
 | 📄 **Final Project Report** | Complete Technical Architecture Document, System Requirements Specification (SRS), and Evaluation Metrics | [View Project Report (PDF)](https://drive.google.com/file/d/1pFmduew7up6oNzZ0_X2YcEbCZNrLNfrp/view?usp=drive_link) \| [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 | 📊 **Presentation Deck (PPT)** | 20-Slide B.Tech Final Project Evaluation Deck covering System Design, Polyglot DB, AI Microservice & Testing | [View Presentation (PPT / Slides)](./docs/Cybersecurity_Awareness_Game_Edited.ppt.pdf) |
-| 🎥 **Video Demonstration** | HD Video Walkthrough of DevStream Platform (Author Workflow, AI Summarizer, Live GitHub Portfolio & Moderator Panel) | [Watch Video Demonstration (YouTube)](https://www.youtube.com/watch?v=DevStream_Demo_Week10) \| [Drive Video Link](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link) |
+| 🎥 **Video Demonstration** |HD Video Walkthrough of Cybersecurity Awareness Game (Java Swing Architecture, Quiz Modules, Interactive Mini-Games & Swara AI Voiceover). | [Watch Video Demonstration (YouTube)](https://youtu.be/rKa4CYYWeyI) \| [Drive Video Link](https://drive.google.com/file/d/1C6V8o4NL6FSTMm4dw5IOK83lI_o6LncL/view?usp=drive_link) |
 
 ---
 
