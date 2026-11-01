@@ -67,8 +67,7 @@ Network accounts, cloud synchronization, real malware scanning, and network-base
 
 ### SRS PDF
 
-You can access the [Project SRS Click](https://drive.google.com/file/d/1LixhIziyjHDVCXckHiU0Rzo9B0P1E16u/view?usp=drive_link)
-
+ You can access the complete [View SRS Document](./SRS_pages_.docx).
 ---
 
 ## Architecture & Core Modules
